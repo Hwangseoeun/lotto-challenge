@@ -18,6 +18,12 @@ repositories {
 
 dependencies {
     implementation 'com.github.woowacourse-projects:mission-utils:1.2.0'
+
+    //JdbcTemplate
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.5.7'
+
+    //H2 DB
+    runtimeOnly 'com.h2database:h2:2.3.232'
 }
 
 test {

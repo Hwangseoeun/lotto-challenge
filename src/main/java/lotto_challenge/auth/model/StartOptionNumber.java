@@ -9,7 +9,7 @@ public class StartOptionNumber {
     private final int value;
 
     public StartOptionNumber(final String chooseOption) {
-        validateChooseOptionIsNull(chooseOption);
+        validateChooseOptionContainsBlank(chooseOption);
         validateType(chooseOption);
         final int optionNumber = Integer.parseInt(chooseOption);
         validateOption(optionNumber);
@@ -17,7 +17,7 @@ public class StartOptionNumber {
         this.value = optionNumber;
     }
 
-    private void validateChooseOptionIsNull(final String chooseOption) {
+    private void validateChooseOptionContainsBlank(final String chooseOption) {
         if(chooseOption == null || chooseOption.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없어요.");
         }

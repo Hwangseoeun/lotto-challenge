@@ -17,4 +17,20 @@ public class AuthInputView {
 
         return chooseOption;
     }
+
+    public String inputSignUp() {
+        System.out.print(AuthInputGuideMessage.INPUT_SIGN_UP_GUIDE_MESSAGE.getMessage());
+        final String userEmail = Console.readLine();
+        System.out.println();
+
+        return userEmail;
+    }
+
+    public String inputLogin() {
+        System.out.print(AuthInputGuideMessage.INPUT_LOGIN_GUIDE_MESSAGE.getMessage());
+        final String userEmail = Console.readLine();
+        System.out.println();
+
+        return userEmail;
+    }
 }

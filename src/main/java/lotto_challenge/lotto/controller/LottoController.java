@@ -10,20 +10,20 @@ import lotto_challenge.lotto.model.PurchasePrice;
 import lotto_challenge.lotto.model.Rank;
 import lotto_challenge.lotto.model.ReturnRate;
 import lotto_challenge.lotto.model.WinningRankCounter;
-import lotto_challenge.lotto.view.InputView;
-import lotto_challenge.lotto.view.OutputView;
+import lotto_challenge.lotto.view.LottoInputView;
+import lotto_challenge.lotto.view.LottoOutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final LottoInputView lottoInputView;
+    private final LottoOutputView lottoOutputView;
 
-    public LottoController(final InputView inputView, final OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public LottoController(final LottoInputView lottoInputView, final LottoOutputView lottoOutputView) {
+        this.lottoInputView = lottoInputView;
+        this.lottoOutputView = lottoOutputView;
     }
 
     public void startLottoMachine() {
@@ -31,28 +31,28 @@ public class LottoController {
         final LottoQuantity lottoQuantity = new LottoQuantity(purchasePrice);
 
         final Lottos lottos = generateLottos(lottoQuantity);
-        outputView.outputLottos(lottoQuantity, lottos);
+        lottoOutputView.outputLottos(lottoQuantity, lottos);
 
         final Lotto winningLotto = getWinningLotto();
         final BonusNumber bonusNumber = getBonusNumber(winningLotto);
 
         final WinningRankCounter winningRankCounter = new WinningRankCounter();
         judgeRank(winningRankCounter, lottos, winningLotto, bonusNumber);
-        outputView.outputWinningResult(winningRankCounter);
+        lottoOutputView.outputWinningResult(winningRankCounter);
 
         final int totalReturn = winningRankCounter.calculateReturn();
         final ReturnRate returnRate = new ReturnRate(totalReturn, purchasePrice);
-        outputView.outputReturnRate(returnRate);
+        lottoOutputView.outputReturnRate(returnRate);
     }
 
     private PurchasePrice getPurchasePrice() {
         while(true) {
             try {
-                final String purchasePrice = inputView.inputPurchasePrice();
+                final String purchasePrice = lottoInputView.inputPurchasePrice();
                 return new PurchasePrice(purchasePrice);
             }
             catch (IllegalArgumentException e) {
-                outputView.outputExceptionMessage(e);
+                lottoOutputView.outputExceptionMessage(e);
             }
         }
     }
@@ -72,11 +72,11 @@ public class LottoController {
     private Lotto getWinningLotto() {
         while(true) {
             try {
-                final List<Integer> winningLotto = inputView.inputWinningLotto();
+                final List<Integer> winningLotto = lottoInputView.inputWinningLotto();
                 return new Lotto(winningLotto);
             }
             catch (IllegalArgumentException e) {
-                outputView.outputExceptionMessage(e);
+                lottoOutputView.outputExceptionMessage(e);
             }
         }
     }
@@ -84,11 +84,11 @@ public class LottoController {
     private BonusNumber getBonusNumber(final Lotto winningLotto) {
         while(true) {
             try {
-                final String bonusNumber = inputView.inputWinningBonusNumber();
+                final String bonusNumber = lottoInputView.inputWinningBonusNumber();
                 return new BonusNumber(bonusNumber, winningLotto);
             }
             catch (IllegalArgumentException e) {
-                outputView.outputExceptionMessage(e);
+                lottoOutputView.outputExceptionMessage(e);
             }
         }
     }

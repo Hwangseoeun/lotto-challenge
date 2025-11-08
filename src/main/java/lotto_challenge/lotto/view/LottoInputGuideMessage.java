@@ -1,6 +1,6 @@
 package lotto_challenge.lotto.view;
 
-public enum InputGuideMessage {
+public enum LottoInputGuideMessage {
 
     INPUT_PURCHASE_PRICE_GUIDE_MESSAGE("구입금액을 입력해 주세요."),
     INPUT_WINNING_LOTTO_NUMBER_GUIDE_MESSAGE("당첨 번호를 입력해 주세요."),
@@ -9,7 +9,7 @@ public enum InputGuideMessage {
 
     private final String message;
 
-    InputGuideMessage(final String message) {
+    LottoInputGuideMessage(final String message) {
         this.message = message;
     }
 

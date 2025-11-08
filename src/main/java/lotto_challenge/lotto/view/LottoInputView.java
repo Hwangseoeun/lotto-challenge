@@ -6,13 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputView {
+public class LottoInputView {
 
     private static final String NUMBER_SEPARATOR_PATTERN = ",";
     private static final String NUMBER_PATTERN = "0-9";
 
     public String inputPurchasePrice() {
-        System.out.println(InputGuideMessage.INPUT_PURCHASE_PRICE_GUIDE_MESSAGE.getMessage());
+        System.out.println(LottoInputGuideMessage.INPUT_PURCHASE_PRICE_GUIDE_MESSAGE.getMessage());
         final String price = Console.readLine();
         System.out.println();
 
@@ -20,7 +20,7 @@ public class InputView {
     }
 
     public List<Integer> inputWinningLotto() {
-        System.out.println(InputGuideMessage.INPUT_WINNING_LOTTO_NUMBER_GUIDE_MESSAGE.getMessage());
+        System.out.println(LottoInputGuideMessage.INPUT_WINNING_LOTTO_NUMBER_GUIDE_MESSAGE.getMessage());
         final String numbers = Console.readLine();
         System.out.println();
 
@@ -42,7 +42,7 @@ public class InputView {
     }
 
     public String inputWinningBonusNumber() {
-        System.out.println(InputGuideMessage.INPUT_WINNING_BONUS_NUMBER_GUIDE_MESSAGE.getMessage());
+        System.out.println(LottoInputGuideMessage.INPUT_WINNING_BONUS_NUMBER_GUIDE_MESSAGE.getMessage());
         final String numbers = Console.readLine();
         System.out.println();
 

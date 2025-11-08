@@ -1,6 +1,7 @@
 package lotto_challenge.config;
 
 import lotto_challenge.auth.controller.AuthController;
+import lotto_challenge.auth.repository.MemberRepository;
 import lotto_challenge.auth.view.AuthInputView;
 import lotto_challenge.auth.view.AuthOutputView;
 import lotto_challenge.lotto.controller.LottoController;
@@ -13,11 +14,12 @@ public class AppConfig {
     private final AuthOutputView authOutputView = new AuthOutputView();
     private final LottoInputView lottoInputView = new LottoInputView();
     private final LottoOutputView lottoOutputView = new LottoOutputView();
+    private final MemberRepository memberRepository = new MemberRepository();
 
     public AppConfig() {}
 
     public AuthController authController() {
-        return new AuthController(authInputView, authOutputView);
+        return new AuthController(authInputView, authOutputView, memberRepository);
     }
 
     public LottoController lottoController() {

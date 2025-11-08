@@ -2,6 +2,7 @@ package lotto_challenge.auth.controller;
 
 import lotto_challenge.auth.model.Member;
 import lotto_challenge.auth.model.StartOptionNumber;
+import lotto_challenge.auth.repository.MemberRepository;
 import lotto_challenge.auth.view.AuthInputView;
 import lotto_challenge.auth.view.AuthOutputView;
 
@@ -13,10 +14,12 @@ public class AuthController {
 
     private final AuthInputView authInputView;
     private final AuthOutputView authOutputView;
+    private final MemberRepository memberRepository;
 
-    public AuthController(final AuthInputView authInputView, final AuthOutputView authOutputView) {
+    public AuthController(final AuthInputView authInputView, final AuthOutputView authOutputView, final MemberRepository memberRepository) {
         this.authInputView = authInputView;
         this.authOutputView = authOutputView;
+        this.memberRepository = memberRepository;
     }
 
     public void startAuth() {
@@ -26,6 +29,7 @@ public class AuthController {
 
         if(startOptionNumber.getValue() == SIGN_UP.getOptionNumber()) {
             member = getMemberEmailToSignUp();
+            memberRepository.save(member);
         }
 
         if(startOptionNumber.getValue() == LOGIN.getOptionNumber()) {

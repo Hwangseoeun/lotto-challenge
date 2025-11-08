@@ -24,4 +24,8 @@ public class Member {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 이메일 형식이에요.");
         }
     }
+
+    public String getEmail() {
+        return email;
+    }
 }

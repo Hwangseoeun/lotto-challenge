@@ -1,4 +1,4 @@
-package lotto_challenge.lotto.view;
+package lotto_challenge.view;
 
 import camp.nextstep.edu.missionutils.Console;
 

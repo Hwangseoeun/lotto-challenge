@@ -1,6 +1,6 @@
-package lotto_challenge.lotto.model;
+package lotto_challenge.model;
 
-import lotto_challenge.lotto.generator.RandomNumberGenerator;
+import lotto_challenge.generator.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.HashSet;

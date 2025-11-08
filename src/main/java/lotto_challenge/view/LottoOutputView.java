@@ -1,11 +1,11 @@
-package lotto_challenge.lotto.view;
+package lotto_challenge.view;
 
-import lotto_challenge.lotto.model.Lotto;
-import lotto_challenge.lotto.model.LottoQuantity;
-import lotto_challenge.lotto.model.Lottos;
-import lotto_challenge.lotto.model.Rank;
-import lotto_challenge.lotto.model.ReturnRate;
-import lotto_challenge.lotto.model.WinningRankCounter;
+import lotto_challenge.model.Lotto;
+import lotto_challenge.model.LottoQuantity;
+import lotto_challenge.model.Lottos;
+import lotto_challenge.model.Rank;
+import lotto_challenge.model.ReturnRate;
+import lotto_challenge.model.WinningRankCounter;
 
 import java.util.Map;
 

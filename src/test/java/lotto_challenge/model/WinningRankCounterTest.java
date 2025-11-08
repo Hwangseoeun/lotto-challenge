@@ -1,7 +1,5 @@
 package lotto_challenge.model;
 
-import lotto_challenge.lotto.model.Rank;
-import lotto_challenge.lotto.model.WinningRankCounter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

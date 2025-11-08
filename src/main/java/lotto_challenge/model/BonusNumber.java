@@ -1,4 +1,4 @@
-package lotto_challenge.lotto.model;
+package lotto_challenge.model;
 
 import java.util.List;
 

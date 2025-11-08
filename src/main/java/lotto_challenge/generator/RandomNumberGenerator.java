@@ -1,4 +1,4 @@
-package lotto_challenge.lotto.generator;
+package lotto_challenge.generator;
 
 import java.util.List;
 

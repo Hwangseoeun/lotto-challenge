@@ -1,7 +1,5 @@
 package lotto_challenge.model;
 
-import lotto_challenge.lotto.model.Lotto;
-import lotto_challenge.lotto.model.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

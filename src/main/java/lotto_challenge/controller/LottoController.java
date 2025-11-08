@@ -1,17 +1,17 @@
-package lotto_challenge.lotto.controller;
+package lotto_challenge.controller;
 
-import lotto_challenge.lotto.generator.RandomLottoNumbersGenerator;
-import lotto_challenge.lotto.generator.RandomNumberGenerator;
-import lotto_challenge.lotto.model.BonusNumber;
-import lotto_challenge.lotto.model.Lotto;
-import lotto_challenge.lotto.model.LottoQuantity;
-import lotto_challenge.lotto.model.Lottos;
-import lotto_challenge.lotto.model.PurchasePrice;
-import lotto_challenge.lotto.model.Rank;
-import lotto_challenge.lotto.model.ReturnRate;
-import lotto_challenge.lotto.model.WinningRankCounter;
-import lotto_challenge.lotto.view.LottoInputView;
-import lotto_challenge.lotto.view.LottoOutputView;
+import lotto_challenge.generator.RandomLottoNumbersGenerator;
+import lotto_challenge.generator.RandomNumberGenerator;
+import lotto_challenge.model.BonusNumber;
+import lotto_challenge.model.Lotto;
+import lotto_challenge.model.LottoQuantity;
+import lotto_challenge.model.Lottos;
+import lotto_challenge.model.PurchasePrice;
+import lotto_challenge.model.Rank;
+import lotto_challenge.model.ReturnRate;
+import lotto_challenge.model.WinningRankCounter;
+import lotto_challenge.view.LottoInputView;
+import lotto_challenge.view.LottoOutputView;
 
 import java.util.ArrayList;
 import java.util.List;

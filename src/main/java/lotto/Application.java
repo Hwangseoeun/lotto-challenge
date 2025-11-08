@@ -1,16 +1,14 @@
 package lotto;
 
+import lotto.config.AppConfig;
 import lotto.controller.LottoController;
-import lotto.view.InputView;
-import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
 
-        final InputView inputView = new InputView();
-        final OutputView outputView = new OutputView();
+        final AppConfig appConfig = new AppConfig();
 
-        final LottoController lottoController = new LottoController(inputView, outputView);
+        final LottoController lottoController = appConfig.lottoController();
 
         lottoController.startLottoMachine();
     }

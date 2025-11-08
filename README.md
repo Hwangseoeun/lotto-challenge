@@ -43,11 +43,16 @@ STEP 3. 스텝 1에서 사용한 JDBC 템플릿을 JPA로 변경하기
     - 에러 : ```IllegalArgumentException``` 발생
         1. "[ERROR] 올바르지 않은 이메일 형식이에요."
         2. "[ERROR] 이메일에 공백은 입력할 수 없어요."
-        3. "[ERROR] 이미 가입한 이메일이에요."
-        4. "[ERROR] 가입한 적이 없는 이메일이에요."
 
 
 - 사용자가 입력한 이메일을 저장하는 기능
+    - 에러 : ```IllegalArgumentException``` 발생
+        1. "[ERROR] 이미 가입한 이메일이에요."
+
+
+- 이미 DB에 있는 이메일인지 조회하는 기능
+    - 에러 : ```IllegalArgumentException``` 발생
+        1. "[ERROR] 가입한 적이 없는 이메일이에요."
 
 
 - 새로운 로또 발급 혹은 로또 수익률을 전체 조회할지 묻는 안내 문구 출력하는 기능

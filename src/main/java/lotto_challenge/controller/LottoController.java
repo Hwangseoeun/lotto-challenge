@@ -1,5 +1,6 @@
 package lotto_challenge.controller;
 
+import lotto_challenge.dto.LottoStatisticDto;
 import lotto_challenge.generator.RandomLottoNumbersGenerator;
 import lotto_challenge.generator.RandomNumberGenerator;
 import lotto_challenge.model.BonusNumber;
@@ -12,6 +13,7 @@ import lotto_challenge.model.Rank;
 import lotto_challenge.model.ReturnRate;
 import lotto_challenge.model.StartOptionNumber;
 import lotto_challenge.model.WinningRankCounter;
+import lotto_challenge.repository.LottoStatisticRepository;
 import lotto_challenge.repository.MemberRepository;
 import lotto_challenge.view.LottoInputView;
 import lotto_challenge.view.LottoOutputView;
@@ -28,11 +30,18 @@ public class LottoController {
     private final LottoInputView lottoInputView;
     private final LottoOutputView lottoOutputView;
     private final MemberRepository memberRepository;
+    private final LottoStatisticRepository lottoStatisticRepository;
 
-    public LottoController(final LottoInputView lottoInputView, final LottoOutputView lottoOutputView, final MemberRepository memberRepository) {
+    public LottoController(
+        final LottoInputView lottoInputView,
+        final LottoOutputView lottoOutputView,
+        final MemberRepository memberRepository,
+        final LottoStatisticRepository lottoStatisticRepository
+    ) {
         this.lottoInputView = lottoInputView;
         this.lottoOutputView = lottoOutputView;
         this.memberRepository = memberRepository;
+        this.lottoStatisticRepository = lottoStatisticRepository;
     }
 
     public void start() {
@@ -41,8 +50,9 @@ public class LottoController {
 
             if(startOptionNumber.getValue() == FIRST_OPTION) {
                 final Member member = getMemberEmail();
-                memberRepository.save(member);
-                generateLotto();
+                final Long memberId = findOrCreateByEmail(member);
+                final LottoStatisticDto lottoStatisticDto = generateLottoAndReturnLottoStatisticInfo();
+                lottoStatisticRepository.save(memberId, lottoStatisticDto.purchasePrice(), lottoStatisticDto.returnRate());
             }
 
             if(startOptionNumber.getValue() == SECOND_OPTION) {
@@ -80,7 +90,15 @@ public class LottoController {
         }
     }
 
-    private void generateLotto() {
+    private Long findOrCreateByEmail(final Member member) {
+        if(memberRepository.existsByEmail(member.getEmail())) {
+            return memberRepository.findMemberIdByEmail(member.getEmail());
+        }
+
+        return memberRepository.save(member);
+    }
+
+    private LottoStatisticDto generateLottoAndReturnLottoStatisticInfo() {
         final PurchasePrice purchasePrice = getPurchasePrice();
         final LottoQuantity lottoQuantity = new LottoQuantity(purchasePrice);
 
@@ -97,6 +115,8 @@ public class LottoController {
         final int totalReturn = winningRankCounter.calculateReturn();
         final ReturnRate returnRate = new ReturnRate(totalReturn, purchasePrice);
         lottoOutputView.outputReturnRate(returnRate);
+
+        return new LottoStatisticDto(purchasePrice, returnRate);
     }
 
     private PurchasePrice getPurchasePrice() {

@@ -3,13 +3,13 @@ package lotto_challenge.dto;
 import lotto_challenge.model.PurchasePrice;
 import lotto_challenge.model.ReturnRate;
 
-public record LottoStatisticDto(
+public record LottoStatisticSaveRequestDto(
 
     PurchasePrice purchasePrice,
     ReturnRate returnRate
 
 ) {
-    public LottoStatisticDto(
+    public LottoStatisticSaveRequestDto(
         final PurchasePrice purchasePrice,
         final ReturnRate returnRate
     ) {

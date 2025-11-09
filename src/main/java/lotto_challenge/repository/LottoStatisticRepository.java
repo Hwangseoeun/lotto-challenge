@@ -1,12 +1,16 @@
 package lotto_challenge.repository;
 
 import lotto_challenge.database.DBConnectionUtil;
+import lotto_challenge.dto.LottoStatisticResponseDto;
 import lotto_challenge.model.PurchasePrice;
 import lotto_challenge.model.ReturnRate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoStatisticRepository {
 
@@ -23,6 +27,44 @@ public class LottoStatisticRepository {
             preparedStatement.setString(2, String.valueOf(purchasePrice.getValue()));
             preparedStatement.setString(3, String.valueOf(returnRate.getValue()));
             preparedStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new IllegalStateException(e);
+        }
+        finally {
+            try {
+                preparedStatement.close();
+                connection.close();
+            }
+            catch (SQLException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+    }
+
+    public List<LottoStatisticResponseDto> findByMemberId(final Long memberId) {
+        final String sql = "SELECT * FROM lotto_statistic WHERE member_id = ?";
+
+        List<LottoStatisticResponseDto> results = new ArrayList<>();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DBConnectionUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, memberId.toString());
+
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                int purchasePrice = resultSet.getInt("purchase_price");
+                float returnRate = resultSet.getFloat("return_rate");
+                results.add(new LottoStatisticResponseDto(purchasePrice, returnRate));
+            }
+
+            return results;
         }
         catch (SQLException e) {
             throw new IllegalStateException(e);

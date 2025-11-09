@@ -1,6 +1,7 @@
 package lotto_challenge.controller;
 
-import lotto_challenge.dto.LottoStatisticDto;
+import lotto_challenge.dto.LottoStatisticResponseDto;
+import lotto_challenge.dto.LottoStatisticSaveRequestDto;
 import lotto_challenge.generator.RandomLottoNumbersGenerator;
 import lotto_challenge.generator.RandomNumberGenerator;
 import lotto_challenge.model.BonusNumber;
@@ -49,21 +50,24 @@ public class LottoController {
             final StartOptionNumber startOptionNumber = getStartOptionNumber();
 
             if(startOptionNumber.getValue() == FIRST_OPTION) {
-                final Member member = getMemberEmail();
-                final Long memberId = findOrCreateByEmail(member);
-                final LottoStatisticDto lottoStatisticDto = generateLottoAndReturnLottoStatisticInfo();
-                lottoStatisticRepository.save(memberId, lottoStatisticDto.purchasePrice(), lottoStatisticDto.returnRate());
+                startFirstOption();
             }
 
             if(startOptionNumber.getValue() == SECOND_OPTION) {
-                final Member member = getMemberEmail();
-                // 사용자가 입력한 이메일을 기반으로 그동안의 수익률을 조회하는 기능 추가 예정
+                startSecondOption();
             }
 
             if(startOptionNumber.getValue() == THIRD_OPTION) {
                 System.exit(0);
             }
         }
+    }
+
+    private void startFirstOption() {
+        final Member member = getMemberEmail();
+        final Long memberId = findOrCreateByEmail(member);
+        final LottoStatisticSaveRequestDto lottoStatisticSaveRequestDto = generateLotto();
+        lottoStatisticRepository.save(memberId, lottoStatisticSaveRequestDto.purchasePrice(), lottoStatisticSaveRequestDto.returnRate());
     }
 
     private StartOptionNumber getStartOptionNumber() {
@@ -98,7 +102,7 @@ public class LottoController {
         return memberRepository.save(member);
     }
 
-    private LottoStatisticDto generateLottoAndReturnLottoStatisticInfo() {
+    private LottoStatisticSaveRequestDto generateLotto() {
         final PurchasePrice purchasePrice = getPurchasePrice();
         final LottoQuantity lottoQuantity = new LottoQuantity(purchasePrice);
 
@@ -116,7 +120,7 @@ public class LottoController {
         final ReturnRate returnRate = new ReturnRate(totalReturn, purchasePrice);
         lottoOutputView.outputReturnRate(returnRate);
 
-        return new LottoStatisticDto(purchasePrice, returnRate);
+        return new LottoStatisticSaveRequestDto(purchasePrice, returnRate);
     }
 
     private PurchasePrice getPurchasePrice() {
@@ -175,5 +179,18 @@ public class LottoController {
             final Rank rank = Rank.of(matchedNumbersCount, isMatchedBonusNumber);
             winningRankCounter.increase(rank);
         }
+    }
+
+    private void startSecondOption() {
+        final Member member = getMemberEmail();
+        final Long memberId = memberRepository.findMemberIdByEmail(member.getEmail());
+
+        if(memberId == null) {
+            lottoOutputView.outputInvalidMember();
+            return;
+        }
+
+        final List<LottoStatisticResponseDto> lottoStatistics = lottoStatisticRepository.findByMemberId(memberId);
+        lottoOutputView.outputLottoStatistics(lottoStatistics);
     }
 }

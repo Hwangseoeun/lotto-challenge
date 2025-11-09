@@ -7,6 +7,9 @@ public enum LottoOutputGuideMessage {
     OUTPUT_WINNING_RESULT_SECOND_PRIZE_GUIDE_MESSAGE("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
     OUTPUT_WINNING_RESULT_OTHER_PRIZE_GUIDE_MESSAGE("%d개 일치 (%,d원) - %d개"),
     OUTPUT_RETURN_RATE_GUIDE_MESSAGE("총 수익률은 %.1f%c입니다."),
+    OUTPUT_LOTTO_STATISTIC_GUIDE_MESSAGE("그동안의 당첨 통계 내역"),
+    OUTPUT_SEPARATOR("------------------"),
+    OUTPUT_INVALID_MEMBER_GUIDE_MESSAGE("[ERROR] 존재하지 않는 회원이에요."),
     ;
 
     private final String message;

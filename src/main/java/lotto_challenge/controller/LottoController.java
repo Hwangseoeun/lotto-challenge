@@ -56,6 +56,18 @@ public class LottoController {
         }
     }
 
+    private StartOptionNumber getStartOptionNumber() {
+        while(true) {
+            try {
+                final String startOption = lottoInputView.inputStartOption();
+                return new StartOptionNumber(startOption);
+            }
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputExceptionMessage(e);
+            }
+        }
+    }
+
     private Member getMemberEmail() {
         while(true) {
             try {
@@ -85,18 +97,6 @@ public class LottoController {
         final int totalReturn = winningRankCounter.calculateReturn();
         final ReturnRate returnRate = new ReturnRate(totalReturn, purchasePrice);
         lottoOutputView.outputReturnRate(returnRate);
-    }
-
-    private StartOptionNumber getStartOptionNumber() {
-        while(true) {
-            try {
-                final String startOption = lottoInputView.inputStartOption();
-                return new StartOptionNumber(startOption);
-            }
-            catch (IllegalArgumentException e) {
-                lottoOutputView.outputExceptionMessage(e);
-            }
-        }
     }
 
     private PurchasePrice getPurchasePrice() {

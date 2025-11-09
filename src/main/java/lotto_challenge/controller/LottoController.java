@@ -12,6 +12,7 @@ import lotto_challenge.model.Rank;
 import lotto_challenge.model.ReturnRate;
 import lotto_challenge.model.StartOptionNumber;
 import lotto_challenge.model.WinningRankCounter;
+import lotto_challenge.repository.MemberRepository;
 import lotto_challenge.view.LottoInputView;
 import lotto_challenge.view.LottoOutputView;
 
@@ -26,10 +27,12 @@ public class LottoController {
 
     private final LottoInputView lottoInputView;
     private final LottoOutputView lottoOutputView;
+    private final MemberRepository memberRepository;
 
-    public LottoController(final LottoInputView lottoInputView, final LottoOutputView lottoOutputView) {
+    public LottoController(final LottoInputView lottoInputView, final LottoOutputView lottoOutputView, final MemberRepository memberRepository) {
         this.lottoInputView = lottoInputView;
         this.lottoOutputView = lottoOutputView;
+        this.memberRepository = memberRepository;
     }
 
     public void start() {
@@ -38,6 +41,7 @@ public class LottoController {
 
             if(startOptionNumber.getValue() == FIRST_OPTION) {
                 final Member member = getMemberEmail();
+                memberRepository.save(member);
                 generateLotto();
             }
 

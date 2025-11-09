@@ -24,6 +24,14 @@ public class LottoInputView {
         return option;
     }
 
+    public String inputMemberEmail() {
+        System.out.println(LottoInputGuideMessage.INPUT_MEMBER_EMAIL_GUIDE_MESSAGE.getMessage());
+        final String memberEmail = Console.readLine();
+        System.out.println();
+
+        return memberEmail;
+    }
+
     public String inputPurchasePrice() {
         System.out.println(LottoInputGuideMessage.INPUT_PURCHASE_PRICE_GUIDE_MESSAGE.getMessage());
         final String price = Console.readLine();

@@ -6,6 +6,7 @@ import lotto_challenge.model.BonusNumber;
 import lotto_challenge.model.Lotto;
 import lotto_challenge.model.LottoQuantity;
 import lotto_challenge.model.Lottos;
+import lotto_challenge.model.Member;
 import lotto_challenge.model.PurchasePrice;
 import lotto_challenge.model.Rank;
 import lotto_challenge.model.ReturnRate;
@@ -36,15 +37,29 @@ public class LottoController {
             final StartOptionNumber startOptionNumber = getStartOptionNumber();
 
             if(startOptionNumber.getValue() == FIRST_OPTION) {
+                final Member member = getMemberEmail();
                 generateLotto();
             }
 
             if(startOptionNumber.getValue() == SECOND_OPTION) {
+                final Member member = getMemberEmail();
                 // 사용자가 입력한 이메일을 기반으로 그동안의 수익률을 조회하는 기능 추가 예정
             }
 
             if(startOptionNumber.getValue() == THIRD_OPTION) {
                 System.exit(0);
+            }
+        }
+    }
+
+    private Member getMemberEmail() {
+        while(true) {
+            try {
+                final String email = lottoInputView.inputMemberEmail();
+                return new Member(email);
+            }
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputExceptionMessage(e);
             }
         }
     }

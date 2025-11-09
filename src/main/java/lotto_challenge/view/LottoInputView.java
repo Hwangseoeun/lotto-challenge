@@ -11,6 +11,19 @@ public class LottoInputView {
     private static final String NUMBER_SEPARATOR_PATTERN = ",";
     private static final String NUMBER_PATTERN = "0-9";
 
+    public String inputStartOption() {
+        System.out.println(LottoInputGuideMessage.INPUT_START_OPTION_GUIDE_MESSAGE.getMessage());
+        System.out.println(LottoInputGuideMessage.FIRST_OPTION_MESSAGE.getMessage());
+        System.out.println(LottoInputGuideMessage.SECOND_OPTION_MESSAGE.getMessage());
+        System.out.println(LottoInputGuideMessage.THIRD_OPTION_MESSAGE.getMessage());
+        System.out.println(LottoInputGuideMessage.INPUT_SEPARATOR.getMessage());
+
+        final String option = Console.readLine();
+        System.out.println();
+
+        return option;
+    }
+
     public String inputPurchasePrice() {
         System.out.println(LottoInputGuideMessage.INPUT_PURCHASE_PRICE_GUIDE_MESSAGE.getMessage());
         final String price = Console.readLine();

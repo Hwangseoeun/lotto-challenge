@@ -49,5 +49,6 @@ public class LottoOutputView {
 
     public void outputReturnRate(final ReturnRate returnRate) {
         System.out.println(String.format(LottoOutputGuideMessage.OUTPUT_RETURN_RATE_GUIDE_MESSAGE.getMessage(), returnRate.getValue(), '%'));
+        System.out.println();
     }
 }

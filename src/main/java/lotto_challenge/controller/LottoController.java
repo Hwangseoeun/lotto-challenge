@@ -9,6 +9,7 @@ import lotto_challenge.model.Lottos;
 import lotto_challenge.model.PurchasePrice;
 import lotto_challenge.model.Rank;
 import lotto_challenge.model.ReturnRate;
+import lotto_challenge.model.StartOptionNumber;
 import lotto_challenge.model.WinningRankCounter;
 import lotto_challenge.view.LottoInputView;
 import lotto_challenge.view.LottoOutputView;
@@ -18,6 +19,10 @@ import java.util.List;
 
 public class LottoController {
 
+    private static final int FIRST_OPTION = 1;
+    private static final int SECOND_OPTION = 2;
+    private static final int THIRD_OPTION = 3;
+
     private final LottoInputView lottoInputView;
     private final LottoOutputView lottoOutputView;
 
@@ -26,7 +31,25 @@ public class LottoController {
         this.lottoOutputView = lottoOutputView;
     }
 
-    public void startLottoMachine() {
+    public void start() {
+        while(true) {
+            final StartOptionNumber startOptionNumber = getStartOptionNumber();
+
+            if(startOptionNumber.getValue() == FIRST_OPTION) {
+                generateLotto();
+            }
+
+            if(startOptionNumber.getValue() == SECOND_OPTION) {
+                // 사용자가 입력한 이메일을 기반으로 그동안의 수익률을 조회하는 기능 추가 예정
+            }
+
+            if(startOptionNumber.getValue() == THIRD_OPTION) {
+                System.exit(0);
+            }
+        }
+    }
+
+    private void generateLotto() {
         final PurchasePrice purchasePrice = getPurchasePrice();
         final LottoQuantity lottoQuantity = new LottoQuantity(purchasePrice);
 
@@ -43,6 +66,18 @@ public class LottoController {
         final int totalReturn = winningRankCounter.calculateReturn();
         final ReturnRate returnRate = new ReturnRate(totalReturn, purchasePrice);
         lottoOutputView.outputReturnRate(returnRate);
+    }
+
+    private StartOptionNumber getStartOptionNumber() {
+        while(true) {
+            try {
+                final String startOption = lottoInputView.inputStartOption();
+                return new StartOptionNumber(startOption);
+            }
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputExceptionMessage(e);
+            }
+        }
     }
 
     private PurchasePrice getPurchasePrice() {

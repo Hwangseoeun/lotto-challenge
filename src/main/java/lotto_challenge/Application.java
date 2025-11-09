@@ -10,6 +10,6 @@ public class Application {
 
         final LottoController lottoController = appConfig.lottoController();
 
-        lottoController.startLottoMachine();
+        lottoController.start();
     }
 }

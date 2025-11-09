@@ -40,7 +40,7 @@ public class MemberRepository {
     }
 
     private Long getMemberId(final PreparedStatement preparedStatement) {
-        try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
+        try (final ResultSet rs = preparedStatement.getGeneratedKeys()) {
             if (rs.next()) {
                 return rs.getLong(1);
             }
@@ -52,7 +52,7 @@ public class MemberRepository {
     }
 
     public boolean existsByEmail(final String email) {
-        final String sql ="SELECT COUNT(*) FROM member WHERE email = ?";
+        final String sql = "SELECT COUNT(*) FROM member WHERE email = ?";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -62,7 +62,7 @@ public class MemberRepository {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, email);
 
-            try (ResultSet rs = preparedStatement.executeQuery()) {
+            try (final ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt(1) > 0;
                 }
@@ -85,7 +85,7 @@ public class MemberRepository {
     }
 
     public Long findMemberIdByEmail(final String email) {
-        final String sql ="SELECT id FROM member WHERE email = ?";
+        final String sql = "SELECT id FROM member WHERE email = ?";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

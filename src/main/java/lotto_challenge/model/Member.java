@@ -4,7 +4,7 @@ public class Member {
 
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9.-]+$";
 
-    private String email;
+    private final String email;
 
     public Member(final String email) {
         validateEmailContainsBlank(email);

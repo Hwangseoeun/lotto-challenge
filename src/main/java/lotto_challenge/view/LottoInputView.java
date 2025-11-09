@@ -55,7 +55,7 @@ public class LottoInputView {
     }
 
     private void validateWinningLottoNumberSeparator(final String numbers) {
-        String pattern = "^[" + NUMBER_PATTERN + "]+(" + NUMBER_SEPARATOR_PATTERN + "[" + NUMBER_PATTERN + "]+)*$";
+        final String pattern = "^[" + NUMBER_PATTERN + "]+(" + NUMBER_SEPARATOR_PATTERN + "[" + NUMBER_PATTERN + "]+)*$";
 
         if(!numbers.matches(pattern)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + NUMBER_SEPARATOR_PATTERN + "를 기준으로 구분해야 해요.");

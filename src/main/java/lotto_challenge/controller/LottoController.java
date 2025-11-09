@@ -63,13 +63,6 @@ public class LottoController {
         }
     }
 
-    private void startFirstOption() {
-        final Member member = getMemberEmail();
-        final Long memberId = findOrCreateByEmail(member);
-        final LottoStatisticSaveRequestDto lottoStatisticSaveRequestDto = generateLotto();
-        lottoStatisticRepository.save(memberId, lottoStatisticSaveRequestDto.purchasePrice(), lottoStatisticSaveRequestDto.returnRate());
-    }
-
     private StartOptionNumber getStartOptionNumber() {
         while(true) {
             try {
@@ -80,6 +73,13 @@ public class LottoController {
                 lottoOutputView.outputExceptionMessage(e);
             }
         }
+    }
+
+    private void startFirstOption() {
+        final Member member = getMemberEmail();
+        final Long memberId = findOrCreateByEmail(member);
+        final LottoStatisticSaveRequestDto lottoStatisticSaveRequestDto = generateLotto();
+        lottoStatisticRepository.save(memberId, lottoStatisticSaveRequestDto.purchasePrice(), lottoStatisticSaveRequestDto.returnRate());
     }
 
     private Member getMemberEmail() {

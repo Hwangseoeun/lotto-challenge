@@ -59,8 +59,8 @@ public class LottoStatisticRepository {
             resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                int purchasePrice = resultSet.getInt("purchase_price");
-                float returnRate = resultSet.getFloat("return_rate");
+                final int purchasePrice = resultSet.getInt("purchase_price");
+                final float returnRate = resultSet.getFloat("return_rate");
                 results.add(new LottoStatisticResponseDto(purchasePrice, returnRate));
             }
 

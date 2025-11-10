@@ -5,7 +5,7 @@
 
 
 ## 🌱 미션 STEP
-STEP 1. 3주차 미션인 Lotto 프로그램에 기획 추가하기 + JDBC 템플릿 사용 및 H2 DB 추가
+STEP 1. 3주차 미션인 Lotto 프로그램에 기획 추가하기 + JDBC 템플릿 사용 및 MySQL DB 추가
 
 STEP 2. 기존 콘솔 프로그램에 웹 인터페이스 추가하기 + spring 추가하여 의존성 주입하기
 

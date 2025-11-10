@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.5.0'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'camp.nextstep.edu'
@@ -24,6 +26,13 @@ dependencies {
 
     //MySQL DB
     runtimeOnly 'com.mysql:mysql-connector-j:8.3.0'
+
+    //SpringBoot
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {

@@ -17,10 +17,6 @@ public class StartOptionNumber {
         this.value = value;
     }
 
-    public int getValue() {
-        return value;
-    }
-
     private void validateNumberContainsBlank(final String number) {
         if(number == null || number.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없어요.");
@@ -37,5 +33,9 @@ public class StartOptionNumber {
         if(value < MIN_OPTION_NUMBER || value > MAX_OPTION_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 선택지에요.");
         }
+    }
+
+    public int getValue() {
+        return value;
     }
 }

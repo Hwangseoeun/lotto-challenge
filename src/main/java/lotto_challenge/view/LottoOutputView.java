@@ -59,7 +59,7 @@ public class LottoOutputView {
         System.out.println(LottoOutputGuideMessage.OUTPUT_SEPARATOR.getMessage());
 
         for(LottoStatisticResponseDto dto : lottoStatistics) {
-            System.out.println(String.format("구매 금액 : %d원 | 수익률 : %f%c", dto.purchasePrice(), dto.returnRate(), '%'));
+            System.out.println(String.format("구매 금액 : %d원 | 수익률 : %f%c", dto.getPurchasePrice(), dto.getReturnRate(), '%'));
         }
 
         System.out.println();

@@ -1,4 +1,4 @@
-package lotto_challenge.model;
+package lotto_challenge.client;
 
 public class StartOptionNumber {
 

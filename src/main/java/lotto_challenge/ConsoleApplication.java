@@ -3,9 +3,9 @@ package lotto_challenge;
 import lotto_challenge.client.ConsoleClient;
 import lotto_challenge.client.InputHandler;
 import lotto_challenge.config.AppConfig;
-import lotto_challenge.controller.LottoController;
-import lotto_challenge.controller.LottoStatisticController;
-import lotto_challenge.controller.MemberController;
+import lotto_challenge.core.controller.LottoController;
+import lotto_challenge.core.controller.LottoStatisticController;
+import lotto_challenge.core.controller.MemberController;
 import lotto_challenge.service.LottoService;
 import lotto_challenge.service.LottoStatisticService;
 import lotto_challenge.service.MemberService;
@@ -21,11 +21,11 @@ public class ConsoleApplication {
         final LottoService lottoService = appConfig.lottoService();
         final LottoStatisticService lottoStatisticService = appConfig.lottoStatisticService();
 
-        final MemberController memberController = appConfig.memberController(memberService);
-        final LottoController lottoController = appConfig.lottoController(lottoService);
-        final LottoStatisticController lottoStatisticController = appConfig.lottoStatisticController(lottoStatisticService);
+        final MemberController consoleMemberController = appConfig.consoleMemberController(memberService);
+        final LottoController consoleLottoController = appConfig.consoleLottoController(lottoService);
+        final LottoStatisticController consoleLottoStatisticController = appConfig.consoleLottoStatisticController(lottoStatisticService);
 
-        final ConsoleClient consoleClient = appConfig.consoleClient(inputHandler, memberController, lottoController, lottoStatisticController);
+        final ConsoleClient consoleClient = appConfig.consoleClient(inputHandler, consoleMemberController, consoleLottoController, consoleLottoStatisticController);
 
         consoleClient.start();
     }

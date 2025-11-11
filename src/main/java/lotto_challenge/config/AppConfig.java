@@ -2,9 +2,12 @@ package lotto_challenge.config;
 
 import lotto_challenge.client.ConsoleClient;
 import lotto_challenge.client.InputHandler;
-import lotto_challenge.controller.LottoController;
-import lotto_challenge.controller.LottoStatisticController;
-import lotto_challenge.controller.MemberController;
+import lotto_challenge.console.controller.ConsoleLottoController;
+import lotto_challenge.console.controller.ConsoleLottoStatisticController;
+import lotto_challenge.console.controller.ConsoleMemberController;
+import lotto_challenge.core.controller.LottoController;
+import lotto_challenge.core.controller.LottoStatisticController;
+import lotto_challenge.core.controller.MemberController;
 import lotto_challenge.repository.LottoStatisticRepository;
 import lotto_challenge.repository.MemberRepository;
 import lotto_challenge.service.LottoService;
@@ -38,30 +41,30 @@ public class AppConfig {
         return new LottoStatisticService(lottoStatisticRepository);
     }
 
-    public MemberController memberController(final MemberService memberService) {
-        return new MemberController(memberService);
+    public MemberController consoleMemberController(final MemberService memberService) {
+        return new ConsoleMemberController(memberService);
     }
 
-    public LottoController lottoController(final LottoService lottoService) {
-        return new LottoController(lottoService);
+    public LottoController consoleLottoController(final LottoService lottoService) {
+        return new ConsoleLottoController(lottoService);
     }
 
-    public LottoStatisticController lottoStatisticController(final LottoStatisticService lottoStatisticService) {
-        return new LottoStatisticController(lottoStatisticService);
+    public LottoStatisticController consoleLottoStatisticController(final LottoStatisticService lottoStatisticService) {
+        return new ConsoleLottoStatisticController(lottoStatisticService);
     }
 
     public ConsoleClient consoleClient(
         final InputHandler inputHandler,
-        final MemberController memberController,
-        final LottoController lottoController,
-        final LottoStatisticController lottoStatisticController
+        final MemberController consoleMemberController,
+        final LottoController consoleLottoController,
+        final LottoStatisticController consoleLottoStatisticController
     ) {
         return new ConsoleClient(
             inputHandler,
             lottoOutputView,
-            memberController,
-            lottoController,
-            lottoStatisticController
+            consoleMemberController,
+            consoleLottoController,
+            consoleLottoStatisticController
         );
     }
 }

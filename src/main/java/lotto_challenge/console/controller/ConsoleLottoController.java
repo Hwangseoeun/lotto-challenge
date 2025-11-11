@@ -1,5 +1,6 @@
-package lotto_challenge.controller;
+package lotto_challenge.console.controller;
 
+import lotto_challenge.core.controller.LottoController;
 import lotto_challenge.dto.LottosInfoResponseDto;
 import lotto_challenge.model.BonusNumber;
 import lotto_challenge.model.Lotto;
@@ -12,14 +13,15 @@ import lotto_challenge.service.LottoService;
 
 import java.util.List;
 
-public class LottoController {
+public class ConsoleLottoController implements LottoController {
 
     private final LottoService lottoService;
 
-    public LottoController(final LottoService lottoService) {
+    public ConsoleLottoController(final LottoService lottoService) {
         this.lottoService = lottoService;
     }
 
+    @Override
     public LottosInfoResponseDto generateLottos(final String purchasePrice) {
         final PurchasePrice price = new PurchasePrice(purchasePrice);
         final LottoQuantity lottoQuantity = new LottoQuantity(price);
@@ -28,6 +30,7 @@ public class LottoController {
         return new LottosInfoResponseDto(price, lottoQuantity, lottos);
     }
 
+    @Override
     public WinningRankCounter calculateWinningRank(final Lottos lottos, final List<Integer> winningLottoNumbers, final String bonusNumber) {
         final Lotto winningLotto = new Lotto(winningLottoNumbers);
         final BonusNumber bonus = new BonusNumber(bonusNumber, winningLotto);
@@ -38,6 +41,7 @@ public class LottoController {
         return winningRankCounter;
     }
 
+    @Override
     public ReturnRate calculateReturnRate(final WinningRankCounter winningRankCounter, final PurchasePrice purchasePrice) {
         final int totalReturn = winningRankCounter.calculateReturn();
         return new ReturnRate(totalReturn, purchasePrice);

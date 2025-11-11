@@ -1,8 +1,8 @@
 package lotto_challenge.client;
 
-import lotto_challenge.controller.LottoController;
-import lotto_challenge.controller.LottoStatisticController;
-import lotto_challenge.controller.MemberController;
+import lotto_challenge.core.controller.LottoController;
+import lotto_challenge.core.controller.LottoStatisticController;
+import lotto_challenge.core.controller.MemberController;
 import lotto_challenge.dto.LottoStatisticResponseDto;
 import lotto_challenge.dto.LottosInfoResponseDto;
 import lotto_challenge.dto.SaveLottoStatisticDto;

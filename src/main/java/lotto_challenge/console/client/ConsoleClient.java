@@ -60,25 +60,32 @@ public class ConsoleClient {
     }
 
     private void startFirstOption() {
-        final String member = inputHandler.getMemberEmail();
-        final Long memberId = memberController.saveMember(member);
+        final Long memberId = saveMember();
         final SaveLottoStatisticDto saveLottoStatisticDto = generateLotto();
         lottoStatisticController.saveLottoStatistic(memberId, saveLottoStatisticDto);
     }
 
-    private SaveLottoStatisticDto generateLotto() {
-        final String price = inputHandler.getPurchasePrice();
+    private Long saveMember() {
+        while(true) {
+            try {
+                final String member = inputHandler.getMemberEmail();
+                return memberController.saveMember(member);
+            }
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputExceptionMessage(e);
+            }
+        }
+    }
 
-        final LottosInfoResponseDto lottosInfo = lottoController.generateLottos(price);
+    private SaveLottoStatisticDto generateLotto() {
+        final LottosInfoResponseDto lottosInfo = generateLottos();
+
         final PurchasePrice purchasePrice = lottosInfo.getPurchasePrice();
         final Lottos lottos = lottosInfo.getLottos();
         final LottoQuantity lottoQuantity = lottosInfo.getLottoQuantity();
         lottoOutputView.outputLottos(lottoQuantity, lottos);
 
-        final List<Integer> winningLottoNumbers = inputHandler.getWinningLotto();
-        final String bonusNumber = inputHandler.getBonusNumber();
-
-        final WinningRankCounter winningRankCounter = lottoController.calculateWinningRank(lottos, winningLottoNumbers, bonusNumber);
+        final WinningRankCounter winningRankCounter = judgeRankCount(lottos);
         lottoOutputView.outputWinningResult(winningRankCounter);
 
         final ReturnRate returnRate = lottoController.calculateReturnRate(winningRankCounter, purchasePrice);
@@ -87,9 +94,34 @@ public class ConsoleClient {
         return new SaveLottoStatisticDto(purchasePrice, returnRate);
     }
 
+    private LottosInfoResponseDto generateLottos() {
+        while(true) {
+            try {
+                final String price = inputHandler.getPurchasePrice();
+                return lottoController.generateLottos(price);
+            }
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputExceptionMessage(e);
+            }
+        }
+    }
+
+    private WinningRankCounter judgeRankCount(final Lottos lottos) {
+        while(true) {
+            try {
+                final List<Integer> winningLottoNumbers = inputHandler.getWinningLotto();
+                final String bonusNumber = inputHandler.getBonusNumber();
+
+                return lottoController.calculateWinningRank(lottos, winningLottoNumbers, bonusNumber);
+            }
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputExceptionMessage(e);
+            }
+        }
+    }
+
     private void startSecondOption() {
-        final String member = inputHandler.getMemberEmail();
-        final Long memberId = memberController.getMember(member);
+        final Long memberId = getMember();
 
         if(memberId == null) {
             lottoOutputView.outputInvalidMember();
@@ -98,5 +130,17 @@ public class ConsoleClient {
 
         final List<LottoStatisticResponseDto> lottoStatistics = lottoStatisticController.getLottoStatistics(memberId);
         lottoOutputView.outputLottoStatistics(lottoStatistics);
+    }
+
+    private Long getMember() {
+        while(true) {
+            try {
+                final String member = inputHandler.getMemberEmail();
+                return memberController.getMember(member);
+            }
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputExceptionMessage(e);
+            }
+        }
     }
 }

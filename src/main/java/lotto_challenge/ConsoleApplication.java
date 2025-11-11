@@ -1,13 +1,19 @@
 package lotto_challenge;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import lotto_challenge.client.ConsoleClient;
+import lotto_challenge.client.InputHandler;
+import lotto_challenge.config.AppConfig;
+import lotto_challenge.controller.LottoController;
+import lotto_challenge.controller.LottoStatisticController;
+import lotto_challenge.controller.MemberController;
+import lotto_challenge.service.LottoService;
+import lotto_challenge.service.LottoStatisticService;
+import lotto_challenge.service.MemberService;
 
-@SpringBootApplication
-public class Application {
+public class ConsoleApplication {
     public static void main(String[] args) {
 
-/*        final AppConfig appConfig = new AppConfig();
+        final AppConfig appConfig = new AppConfig();
 
         final InputHandler inputHandler = appConfig.inputHandler();
 
@@ -21,8 +27,6 @@ public class Application {
 
         final ConsoleClient consoleClient = appConfig.consoleClient(inputHandler, memberController, lottoController, lottoStatisticController);
 
-        consoleClient.start();*/
-
-        SpringApplication.run(Application.class);
+        consoleClient.start();
     }
 }

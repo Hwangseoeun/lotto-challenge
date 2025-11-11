@@ -1,7 +1,7 @@
 package lotto_challenge.core.controller;
 
-import lotto_challenge.dto.LottoStatisticResponseDto;
-import lotto_challenge.dto.SaveLottoStatisticDto;
+import lotto_challenge.core.dto.LottoStatisticResponseDto;
+import lotto_challenge.core.dto.SaveLottoStatisticDto;
 
 import java.util.List;
 

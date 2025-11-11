@@ -1,15 +1,15 @@
 package lotto_challenge.console.controller;
 
 import lotto_challenge.core.controller.LottoController;
-import lotto_challenge.dto.LottosInfoResponseDto;
-import lotto_challenge.model.BonusNumber;
-import lotto_challenge.model.Lotto;
-import lotto_challenge.model.LottoQuantity;
-import lotto_challenge.model.Lottos;
-import lotto_challenge.model.PurchasePrice;
-import lotto_challenge.model.ReturnRate;
-import lotto_challenge.model.WinningRankCounter;
-import lotto_challenge.service.LottoService;
+import lotto_challenge.core.dto.LottosInfoResponseDto;
+import lotto_challenge.core.model.BonusNumber;
+import lotto_challenge.core.model.Lotto;
+import lotto_challenge.core.model.LottoQuantity;
+import lotto_challenge.core.model.Lottos;
+import lotto_challenge.core.model.PurchasePrice;
+import lotto_challenge.core.model.ReturnRate;
+import lotto_challenge.core.model.WinningRankCounter;
+import lotto_challenge.core.service.LottoService;
 
 import java.util.List;
 

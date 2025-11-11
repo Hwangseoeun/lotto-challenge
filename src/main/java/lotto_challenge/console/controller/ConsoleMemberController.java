@@ -1,8 +1,8 @@
 package lotto_challenge.console.controller;
 
 import lotto_challenge.core.controller.MemberController;
-import lotto_challenge.model.Member;
-import lotto_challenge.service.MemberService;
+import lotto_challenge.core.model.Member;
+import lotto_challenge.core.service.MemberService;
 
 public class ConsoleMemberController implements MemberController {
 

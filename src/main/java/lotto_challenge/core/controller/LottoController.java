@@ -1,10 +1,10 @@
 package lotto_challenge.core.controller;
 
-import lotto_challenge.dto.LottosInfoResponseDto;
-import lotto_challenge.model.Lottos;
-import lotto_challenge.model.PurchasePrice;
-import lotto_challenge.model.ReturnRate;
-import lotto_challenge.model.WinningRankCounter;
+import lotto_challenge.core.dto.LottosInfoResponseDto;
+import lotto_challenge.core.model.Lottos;
+import lotto_challenge.core.model.PurchasePrice;
+import lotto_challenge.core.model.ReturnRate;
+import lotto_challenge.core.model.WinningRankCounter;
 
 import java.util.List;
 

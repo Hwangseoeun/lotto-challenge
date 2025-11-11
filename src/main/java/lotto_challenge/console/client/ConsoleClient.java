@@ -1,17 +1,19 @@
 package lotto_challenge.console.client;
 
+import lotto_challenge.console.view.LottoOutputView;
 import lotto_challenge.core.controller.LottoController;
 import lotto_challenge.core.controller.LottoStatisticController;
 import lotto_challenge.core.controller.MemberController;
+import lotto_challenge.core.dto.CalculateRankRequestDto;
 import lotto_challenge.core.dto.LottoStatisticResponseDto;
 import lotto_challenge.core.dto.LottosInfoResponseDto;
+import lotto_challenge.core.dto.PurchaseRequestDto;
 import lotto_challenge.core.dto.SaveLottoStatisticDto;
 import lotto_challenge.core.model.LottoQuantity;
 import lotto_challenge.core.model.Lottos;
 import lotto_challenge.core.model.PurchasePrice;
 import lotto_challenge.core.model.ReturnRate;
 import lotto_challenge.core.model.WinningRankCounter;
-import lotto_challenge.console.view.LottoOutputView;
 
 import java.util.List;
 
@@ -98,7 +100,8 @@ public class ConsoleClient {
         while(true) {
             try {
                 final String price = inputHandler.getPurchasePrice();
-                return lottoController.generateLottos(price);
+                final PurchaseRequestDto dto = new PurchaseRequestDto(price);
+                return lottoController.generateLottos(dto);
             }
             catch (IllegalArgumentException e) {
                 lottoOutputView.outputExceptionMessage(e);
@@ -111,8 +114,9 @@ public class ConsoleClient {
             try {
                 final List<Integer> winningLottoNumbers = inputHandler.getWinningLotto();
                 final String bonusNumber = inputHandler.getBonusNumber();
+                final CalculateRankRequestDto dto = new CalculateRankRequestDto(lottos, winningLottoNumbers, bonusNumber);
 
-                return lottoController.calculateWinningRank(lottos, winningLottoNumbers, bonusNumber);
+                return lottoController.calculateWinningRank(dto);
             }
             catch (IllegalArgumentException e) {
                 lottoOutputView.outputExceptionMessage(e);

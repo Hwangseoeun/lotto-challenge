@@ -8,10 +8,12 @@ import lotto_challenge.core.model.LottoQuantity;
 import lotto_challenge.core.model.Lottos;
 import lotto_challenge.core.model.Rank;
 import lotto_challenge.core.model.WinningRankCounter;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class LottoService {
 
     public Lottos generateLottos(final LottoQuantity lottoQuantity) {

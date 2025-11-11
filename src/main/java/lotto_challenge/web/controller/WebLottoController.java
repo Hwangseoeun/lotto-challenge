@@ -1,4 +1,4 @@
-package lotto_challenge.console.controller;
+package lotto_challenge.web.controller;
 
 import lotto_challenge.core.controller.LottoController;
 import lotto_challenge.core.dto.CalculateRankRequestDto;
@@ -12,17 +12,24 @@ import lotto_challenge.core.model.PurchasePrice;
 import lotto_challenge.core.model.ReturnRate;
 import lotto_challenge.core.model.WinningRankCounter;
 import lotto_challenge.core.service.LottoService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public class ConsoleLottoController implements LottoController {
+@RequestMapping("api/lotto")
+@RestController
+public class WebLottoController implements LottoController {
 
     private final LottoService lottoService;
 
-    public ConsoleLottoController(final LottoService lottoService) {
+    public WebLottoController(final LottoService lottoService) {
         this.lottoService = lottoService;
     }
 
     @Override
-    public LottosInfoResponseDto generateLottos(final PurchaseRequestDto dto) {
+    @PostMapping("/generate")
+    public LottosInfoResponseDto generateLottos(@RequestBody final PurchaseRequestDto dto) {
         final PurchasePrice price = new PurchasePrice(dto.purchasePrice());
         final LottoQuantity lottoQuantity = new LottoQuantity(price);
         final Lottos lottos = lottoService.generateLottos(lottoQuantity);
@@ -31,7 +38,8 @@ public class ConsoleLottoController implements LottoController {
     }
 
     @Override
-    public WinningRankCounter calculateWinningRank(final CalculateRankRequestDto dto) {
+    @PostMapping("/rank")
+    public WinningRankCounter calculateWinningRank(@RequestBody final CalculateRankRequestDto dto) {
         final Lotto winningLotto = new Lotto(dto.winningLottoNumbers());
         final BonusNumber bonus = new BonusNumber(dto.bonusNumber(), winningLotto);
 

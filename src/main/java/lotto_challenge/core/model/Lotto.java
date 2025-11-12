@@ -12,6 +12,8 @@ public class Lotto {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int NUMBER_COUNT = 6;
+    private static final List<Integer> WINNING_LOTTO_NUMBERS = List.of(6, 9, 16, 19, 24, 28);
+    private static final int WINNING_BONUS_NUMBER = 17;
 
     private final List<Integer> numbers;
 
@@ -55,16 +57,14 @@ public class Lotto {
         return numbers;
     }
 
-    public int countMatchedNumbers(final Lotto winningLotto) {
-        final List<Integer> winningLottoNumbers = winningLotto.getNumbers();
-
+    public int countMatchedNumbers() {
         final List<Integer> copyNumbers = new ArrayList<>(numbers);
-        copyNumbers.retainAll(winningLottoNumbers);
+        copyNumbers.retainAll(WINNING_LOTTO_NUMBERS);
 
         return copyNumbers.size();
     }
 
-    public boolean isMatchedBonusNumber(final BonusNumber bonusNumber) {
-        return numbers.contains(bonusNumber.getValue());
+    public boolean isMatchedBonusNumber() {
+        return numbers.contains(WINNING_BONUS_NUMBER);
     }
 }

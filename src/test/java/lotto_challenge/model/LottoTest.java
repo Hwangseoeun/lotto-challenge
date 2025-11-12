@@ -1,6 +1,5 @@
 package lotto_challenge.model;
 
-import lotto_challenge.core.model.BonusNumber;
 import lotto_challenge.core.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,10 +18,6 @@ class LottoTest {
 
     private static Lotto createLotto(final List<Integer> numbers) {
         return new Lotto(numbers);
-    }
-
-    private static BonusNumber createBonusNumber(final String number, final Lotto buyingLotto) {
-        return new BonusNumber(number, buyingLotto);
     }
 
     @DisplayName("생성자에 유효한 입력값(로또 번호 리스트)을 입력하면 Lotto 인스턴스가 생성된다.")
@@ -98,26 +93,23 @@ class LottoTest {
     @Test
     void givenWinningLotto_whenCountMatchedNumbers_thenReturnCount() {
         //Given
-        final Lotto buyingLotto = createLotto(Arrays.asList(1, 2, 3, 14, 15, 16));
-        final Lotto winningLotto = createLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        final Lotto buyingLotto = createLotto(Arrays.asList(6, 9, 16, 19, 24, 28));
 
         //When
-        final int matchedNumberCount = buyingLotto.countMatchedNumbers(winningLotto);
+        final int matchedNumberCount = buyingLotto.countMatchedNumbers();
 
         //Then
-        assertThat(matchedNumberCount).isEqualTo(3);
+        assertThat(matchedNumberCount).isEqualTo(6);
     }
 
     @DisplayName("로또에 보너스 번호가 있는지 여부를 반환한다.")
     @Test
     void givenBonusNumber_whenIsMatchedBonusNumber_thenReturnWhether() {
         //Given
-        final Lotto winningLotto = createLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        final Lotto buyingLotto = createLotto(Arrays.asList(31, 32, 33, 34, 35, 36));
-        final BonusNumber bonusNumber = createBonusNumber("31", winningLotto);
+        final Lotto buyingLotto = createLotto(Arrays.asList(1, 2, 3, 4, 5, 17));
 
         //When
-        final boolean whether = buyingLotto.isMatchedBonusNumber(bonusNumber);
+        final boolean whether = buyingLotto.isMatchedBonusNumber();
 
         //Then
         assertThat(whether).isTrue();

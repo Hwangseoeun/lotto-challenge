@@ -79,10 +79,7 @@ public class ConsoleClient {
         final LottoQuantity lottoQuantity = lottosInfo.getLottoQuantity();
         lottoOutputView.outputLottos(lottoQuantity, lottos);
 
-        final List<Integer> winningLottoNumbers = inputHandler.getWinningLotto();
-        final String bonusNumber = inputHandler.getBonusNumber();
-
-        final WinningRankCounter winningRankCounter = lottoController.calculateWinningRank(lottos, winningLottoNumbers, bonusNumber);
+        final WinningRankCounter winningRankCounter = lottoController.calculateWinningRank(lottos);
         lottoOutputView.outputWinningResult(winningRankCounter);
 
         final ReturnRate returnRate = lottoController.calculateReturnRate(winningRankCounter, purchasePrice);

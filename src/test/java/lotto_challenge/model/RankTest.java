@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
-import static lotto_challenge.model.Rank.FIFTH_PRIZE;
-import static lotto_challenge.model.Rank.FIRST_PRIZE;
-import static lotto_challenge.model.Rank.FOURTH_PRIZE;
-import static lotto_challenge.model.Rank.NONE;
-import static lotto_challenge.model.Rank.SECOND_PRIZE;
-import static lotto_challenge.model.Rank.THIRD_PRIZE;
+import static lotto_challenge.core.model.Rank.FIFTH_PRIZE;
+import static lotto_challenge.core.model.Rank.FIRST_PRIZE;
+import static lotto_challenge.core.model.Rank.FOURTH_PRIZE;
+import static lotto_challenge.core.model.Rank.NONE;
+import static lotto_challenge.core.model.Rank.SECOND_PRIZE;
+import static lotto_challenge.core.model.Rank.THIRD_PRIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 

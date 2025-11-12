@@ -1,5 +1,7 @@
 package lotto_challenge.model;
 
+import lotto_challenge.core.model.BonusNumber;
+import lotto_challenge.core.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -10,7 +10,7 @@ import lotto_challenge.service.LottoService;
 import lotto_challenge.service.LottoStatisticService;
 import lotto_challenge.service.MemberService;
 
-public class Application {
+public class ConsoleApplication {
     public static void main(String[] args) {
 
         final AppConfig appConfig = new AppConfig();

@@ -17,6 +17,9 @@ import java.util.List;
 
 public class ConsoleClient {
 
+    private static final String TYPE_PATTERN = "[0-9]";
+    private static final int MIN_OPTION_NUMBER = 1;
+    private static final int MAX_OPTION_NUMBER = 3;
     private static final int FIRST_OPTION = 1;
     private static final int SECOND_OPTION = 2;
     private static final int THIRD_OPTION = 3;
@@ -43,7 +46,8 @@ public class ConsoleClient {
 
     public void start() {
         while(true) {
-            final StartOptionNumber startOptionNumber = inputHandler.getStartOptionNumber();
+            final String number = inputHandler.getStartOptionNumber();
+            final StartOptionNumber startOptionNumber = new StartOptionNumber(number);
 
             if(startOptionNumber.getValue() == FIRST_OPTION) {
                 startFirstOption();

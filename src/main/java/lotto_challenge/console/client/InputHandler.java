@@ -15,11 +15,10 @@ public class InputHandler {
         this.lottoOutputView = lottoOutputView;
     }
 
-    public StartOptionNumber getStartOptionNumber() {
+    public String getStartOptionNumber() {
         while(true) {
             try {
-                final String startOption = lottoInputView.inputStartOption();
-                return new StartOptionNumber(startOption);
+                return lottoInputView.inputStartOption();
             }
             catch (IllegalArgumentException e) {
                 lottoOutputView.outputExceptionMessage(e);

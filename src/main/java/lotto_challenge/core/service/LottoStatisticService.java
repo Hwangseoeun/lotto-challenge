@@ -1,7 +1,8 @@
 package lotto_challenge.core.service;
 
-import lotto_challenge.core.dto.LottoStatisticResponseDto;
-import lotto_challenge.core.dto.SaveLottoStatisticDto;
+import lotto_challenge.core.service.dto.GetLottoStatisticDto;
+import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
+import lotto_challenge.core.service.dto.SaveLottoStatisticDto;
 import lotto_challenge.core.repository.LottoStatisticRepository;
 
 import java.util.List;
@@ -14,11 +15,11 @@ public class LottoStatisticService {
         this.lottoStatisticRepository = lottoStatisticRepository;
     }
 
-    public void saveLottoStatistic(final Long memberId, final SaveLottoStatisticDto dto) {
-        lottoStatisticRepository.save(memberId, dto.getPurchasePrice(), dto.getReturnRate());
+    public void saveLottoStatistic(final SaveLottoStatisticDto dto) {
+        lottoStatisticRepository.save(dto.memberId(), dto.getPurchasePrice(), dto.getReturnRate());
     }
 
-    public List<LottoStatisticResponseDto> getLottoStatistics(final Long memberId) {
-        return lottoStatisticRepository.findByMemberId(memberId);
+    public List<LottoStatisticInfoDto> getLottoStatistics(final GetLottoStatisticDto dto) {
+        return lottoStatisticRepository.findByMemberId(dto.memberId());
     }
 }

@@ -1,12 +1,7 @@
 package lotto_challenge.console.view;
 
-import lotto_challenge.core.dto.LottoStatisticResponseDto;
-import lotto_challenge.core.model.Lotto;
-import lotto_challenge.core.model.LottoQuantity;
-import lotto_challenge.core.model.Lottos;
 import lotto_challenge.core.model.Rank;
-import lotto_challenge.core.model.ReturnRate;
-import lotto_challenge.core.model.WinningRankCounter;
+import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
 
 import java.util.List;
 import java.util.Map;
@@ -18,21 +13,20 @@ public class LottoOutputView {
         System.out.println();
     }
 
-    public void outputLottos(final LottoQuantity lottoQuantity, final Lottos lottos) {
-        System.out.println(lottoQuantity.getValue() + LottoOutputGuideMessage.OUTPUT_LOTTO_QUANTITY_GUIDE_MESSAGE.getMessage());
+    public void outputLottos(final int lottoQuantity, final List<List<Integer>> lottos) {
+        System.out.println(lottoQuantity + LottoOutputGuideMessage.OUTPUT_LOTTO_QUANTITY_GUIDE_MESSAGE.getMessage());
 
-        for(Lotto lotto : lottos.getValue()) {
-            System.out.println(lotto.getNumbers());
+        for(List<Integer> lotto : lottos) {
+            System.out.println(lotto);
         }
 
         System.out.println();
     }
 
-    public void outputWinningResult(final WinningRankCounter winningRankCounter) {
+    public void outputWinningResult(final Map<Rank, Integer> winningRankCounter) {
         System.out.println(LottoOutputGuideMessage.OUTPUT_WINNING_RESULT_GUIDE_MESSAGE.getMessage());
-        final Map<Rank, Integer> result = winningRankCounter.getResult();
 
-        for(Map.Entry<Rank, Integer> entry : result.entrySet()) {
+        for(Map.Entry<Rank, Integer> entry : winningRankCounter.entrySet()) {
             final Rank rank = entry.getKey();
             final Integer count = entry.getValue();
 
@@ -49,16 +43,16 @@ public class LottoOutputView {
         }
     }
 
-    public void outputReturnRate(final ReturnRate returnRate) {
-        System.out.println(String.format(LottoOutputGuideMessage.OUTPUT_RETURN_RATE_GUIDE_MESSAGE.getMessage(), returnRate.getValue(), '%'));
+    public void outputReturnRate(final float returnRate) {
+        System.out.println(String.format(LottoOutputGuideMessage.OUTPUT_RETURN_RATE_GUIDE_MESSAGE.getMessage(), returnRate, '%'));
         System.out.println();
     }
 
-    public void outputLottoStatistics(final List<LottoStatisticResponseDto> lottoStatistics) {
+    public void outputLottoStatistics(final List<LottoStatisticInfoDto> lottoStatistics) {
         System.out.println(LottoOutputGuideMessage.OUTPUT_LOTTO_STATISTIC_GUIDE_MESSAGE.getMessage());
         System.out.println(LottoOutputGuideMessage.OUTPUT_SEPARATOR.getMessage());
 
-        for(LottoStatisticResponseDto dto : lottoStatistics) {
+        for(LottoStatisticInfoDto dto : lottoStatistics) {
             System.out.println(String.format("구매 금액 : %d원 | 수익률 : %f%c", dto.getPurchasePrice(), dto.getReturnRate(), '%'));
         }
 

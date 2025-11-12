@@ -1,47 +1,30 @@
 package lotto_challenge.console.client;
 
-import lotto_challenge.core.controller.LottoController;
-import lotto_challenge.core.controller.LottoStatisticController;
-import lotto_challenge.core.controller.MemberController;
-import lotto_challenge.core.dto.LottoStatisticResponseDto;
-import lotto_challenge.core.dto.LottosInfoResponseDto;
-import lotto_challenge.core.dto.SaveLottoStatisticDto;
-import lotto_challenge.core.model.LottoQuantity;
-import lotto_challenge.core.model.Lottos;
-import lotto_challenge.core.model.PurchasePrice;
-import lotto_challenge.core.model.ReturnRate;
-import lotto_challenge.core.model.WinningRankCounter;
 import lotto_challenge.console.view.LottoOutputView;
-
-import java.util.List;
+import lotto_challenge.core.controller.MainController;
+import lotto_challenge.core.controller.dto.request.GenerateLottosRequestDto;
+import lotto_challenge.core.controller.dto.request.LottoStatisticRequestDto;
+import lotto_challenge.core.controller.dto.response.GenerateLottosResponseDto;
+import lotto_challenge.core.controller.dto.response.LottoStatisticResponseDto;
 
 public class ConsoleClient {
 
-    private static final String TYPE_PATTERN = "[0-9]";
-    private static final int MIN_OPTION_NUMBER = 1;
-    private static final int MAX_OPTION_NUMBER = 3;
     private static final int FIRST_OPTION = 1;
     private static final int SECOND_OPTION = 2;
     private static final int THIRD_OPTION = 3;
 
     private final InputHandler inputHandler;
     private final LottoOutputView lottoOutputView;
-    private final MemberController memberController;
-    private final LottoController lottoController;
-    private final LottoStatisticController lottoStatisticController;
+    private final MainController mainController;
 
     public ConsoleClient(
         final InputHandler inputHandler,
         final LottoOutputView lottoOutputView,
-        final MemberController memberController,
-        final LottoController lottoController,
-        final LottoStatisticController lottoStatisticController
-    ) {
+        final MainController mainController
+        ) {
         this.inputHandler = inputHandler;
         this.lottoOutputView = lottoOutputView;
-        this.memberController = memberController;
-        this.lottoController = lottoController;
-        this.lottoStatisticController = lottoStatisticController;
+        this.mainController = mainController;
     }
 
     public void start() {
@@ -65,39 +48,30 @@ public class ConsoleClient {
 
     private void startFirstOption() {
         final String member = inputHandler.getMemberEmail();
-        final Long memberId = memberController.saveMember(member);
-        final SaveLottoStatisticDto saveLottoStatisticDto = generateLotto();
-        lottoStatisticController.saveLottoStatistic(memberId, saveLottoStatisticDto);
-    }
-
-    private SaveLottoStatisticDto generateLotto() {
         final String price = inputHandler.getPurchasePrice();
 
-        final LottosInfoResponseDto lottosInfo = lottoController.generateLottos(price);
-        final PurchasePrice purchasePrice = lottosInfo.getPurchasePrice();
-        final Lottos lottos = lottosInfo.getLottos();
-        final LottoQuantity lottoQuantity = lottosInfo.getLottoQuantity();
-        lottoOutputView.outputLottos(lottoQuantity, lottos);
+        final GenerateLottosRequestDto request = new GenerateLottosRequestDto(member, price);
+        final GenerateLottosResponseDto response = mainController.generateLottos(request);
 
-        final WinningRankCounter winningRankCounter = lottoController.calculateWinningRank(lottos);
-        lottoOutputView.outputWinningResult(winningRankCounter);
-
-        final ReturnRate returnRate = lottoController.calculateReturnRate(winningRankCounter, purchasePrice);
-        lottoOutputView.outputReturnRate(returnRate);
-
-        return new SaveLottoStatisticDto(purchasePrice, returnRate);
+        lottoOutputView.outputLottos(response.lottoQuantity(), response.lottos());
+        lottoOutputView.outputWinningResult(response.winningRankCounter());
+        lottoOutputView.outputReturnRate(response.returnRate());
     }
 
     private void startSecondOption() {
-        final String member = inputHandler.getMemberEmail();
-        final Long memberId = memberController.getMember(member);
+        while(true) {
+            try {
+                final String member = inputHandler.getMemberEmail();
 
-        if(memberId == null) {
-            lottoOutputView.outputInvalidMember();
-            return;
+                final LottoStatisticRequestDto request = new LottoStatisticRequestDto(member);
+                final LottoStatisticResponseDto response = mainController.getLottoStatistics(request);
+
+                lottoOutputView.outputLottoStatistics(response.lottoStatisticInfos());
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputInvalidMember();
+            }
         }
-
-        final List<LottoStatisticResponseDto> lottoStatistics = lottoStatisticController.getLottoStatistics(memberId);
-        lottoOutputView.outputLottoStatistics(lottoStatistics);
     }
 }

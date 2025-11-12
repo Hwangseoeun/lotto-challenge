@@ -2,6 +2,8 @@ package lotto_challenge.core.service;
 
 import lotto_challenge.core.model.Member;
 import lotto_challenge.core.repository.MemberRepository;
+import lotto_challenge.core.service.dto.GetMemberDto;
+import lotto_challenge.core.service.dto.SaveEmailDto;
 
 public class MemberService {
 
@@ -11,15 +13,27 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public boolean existsByEmail(final String email) {
-        return memberRepository.existsByEmail(email);
-    }
+    public Long save(final SaveEmailDto dto) {
+        final Member member = new Member(dto.email());
 
-    public Long getMember(final Member member) {
-        return memberRepository.findMemberIdByEmail(member.getEmail());
-    }
+        if(memberRepository.existsByEmail(member.getEmail())) {
+            return memberRepository.findMemberIdByEmail(member.getEmail());
+        }
 
-    public Long saveMember(final Member member) {
         return memberRepository.save(member);
+    }
+
+    public Long getMember(final GetMemberDto dto) {
+        final Member member = new Member(dto.email());
+        final Long memberId = memberRepository.findMemberIdByEmail(member.getEmail());
+        validateMember(memberId);
+
+        return memberId;
+    }
+
+    private void validateMember(final Long memberId) {
+        if(memberId == null) {
+            throw new IllegalArgumentException();
+        }
     }
 }

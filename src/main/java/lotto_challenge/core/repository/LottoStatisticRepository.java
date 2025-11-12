@@ -1,7 +1,7 @@
 package lotto_challenge.core.repository;
 
 import lotto_challenge.core.database.DBConnectionUtil;
-import lotto_challenge.core.dto.LottoStatisticResponseDto;
+import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
 import lotto_challenge.core.model.PurchasePrice;
 import lotto_challenge.core.model.ReturnRate;
 
@@ -42,10 +42,10 @@ public class LottoStatisticRepository {
         }
     }
 
-    public List<LottoStatisticResponseDto> findByMemberId(final Long memberId) {
+    public List<LottoStatisticInfoDto> findByMemberId(final Long memberId) {
         final String sql = "SELECT * FROM lotto_statistic WHERE member_id = ?";
 
-        List<LottoStatisticResponseDto> results = new ArrayList<>();
+        List<LottoStatisticInfoDto> results = new ArrayList<>();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -61,7 +61,7 @@ public class LottoStatisticRepository {
             while(resultSet.next()) {
                 final int purchasePrice = resultSet.getInt("purchase_price");
                 final float returnRate = resultSet.getFloat("return_rate");
-                results.add(new LottoStatisticResponseDto(purchasePrice, returnRate));
+                results.add(new LottoStatisticInfoDto(purchasePrice, returnRate));
             }
 
             return results;

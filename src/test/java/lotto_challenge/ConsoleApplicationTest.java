@@ -12,7 +12,7 @@ class ConsoleApplicationTest extends NsTest {
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException("1", "test@gmail.com", "1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

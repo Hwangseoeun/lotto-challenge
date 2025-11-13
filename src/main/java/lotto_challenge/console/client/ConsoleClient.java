@@ -29,33 +29,46 @@ public class ConsoleClient {
 
     public void start() {
         while(true) {
-            final String number = inputHandler.getStartOptionNumber();
-            final StartOptionNumber startOptionNumber = new StartOptionNumber(number);
+            try {
+                final String number = inputHandler.getStartOptionNumber();
+                final StartOptionNumber startOptionNumber = new StartOptionNumber(number);
 
-            if(startOptionNumber.getValue() == FIRST_OPTION) {
-                startFirstOption();
+                if(startOptionNumber.getValue() == FIRST_OPTION) {
+                    startFirstOption();
+                }
+
+                if(startOptionNumber.getValue() == SECOND_OPTION) {
+                    startSecondOption();
+                }
+
+                if(startOptionNumber.getValue() == THIRD_OPTION) {
+                    System.exit(0);
+                }
             }
-
-            if(startOptionNumber.getValue() == SECOND_OPTION) {
-                startSecondOption();
-            }
-
-            if(startOptionNumber.getValue() == THIRD_OPTION) {
-                System.exit(0);
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputExceptionMessage(e);
             }
         }
     }
 
     private void startFirstOption() {
-        final String member = inputHandler.getMemberEmail();
-        final String price = inputHandler.getPurchasePrice();
+        while(true) {
+            try {
+                final String member = inputHandler.getMemberEmail();
+                final String price = inputHandler.getPurchasePrice();
 
-        final GenerateLottosRequestDto request = new GenerateLottosRequestDto(member, price);
-        final GenerateLottosResponseDto response = mainController.generateLottos(request);
+                final GenerateLottosRequestDto request = new GenerateLottosRequestDto(member, price);
+                final GenerateLottosResponseDto response = mainController.generateLottos(request);
 
-        lottoOutputView.outputLottos(response.lottoQuantity(), response.lottos());
-        lottoOutputView.outputWinningResult(response.winningRankCounter());
-        lottoOutputView.outputReturnRate(response.returnRate());
+                lottoOutputView.outputLottos(response.lottoQuantity(), response.lottos());
+                lottoOutputView.outputWinningResult(response.winningRankCounter());
+                lottoOutputView.outputReturnRate(response.returnRate());
+                break;
+            }
+            catch (IllegalArgumentException e) {
+                lottoOutputView.outputExceptionMessage(e);
+            }
+        }
     }
 
     private void startSecondOption() {

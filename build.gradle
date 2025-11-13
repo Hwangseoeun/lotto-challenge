@@ -30,6 +30,7 @@ dependencies {
     //SpringBoot
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf:3.5.6"
 
     //Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

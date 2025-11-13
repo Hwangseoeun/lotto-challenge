@@ -1,12 +1,14 @@
 package lotto_challenge.console.view;
 
-import lotto_challenge.core.model.Rank;
+import lotto_challenge.core.controller.dto.RankResultDto;
 import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
 
 import java.util.List;
-import java.util.Map;
 
 public class LottoOutputView {
+
+    private static final int SECOND_PRIZE_MATCHED_NUMBER_COUNT = 5;
+    private static final int SECOND_PRIZE_MONEY = 30000000;
 
     public void outputExceptionMessage(final IllegalArgumentException e) {
         System.out.println(e.getMessage());
@@ -23,23 +25,28 @@ public class LottoOutputView {
         System.out.println();
     }
 
-    public void outputWinningResult(final Map<Rank, Integer> winningRankCounter) {
+    public void outputWinningResult(final List<RankResultDto> winningRanks) {
         System.out.println(LottoOutputGuideMessage.OUTPUT_WINNING_RESULT_GUIDE_MESSAGE.getMessage());
 
-        for(Map.Entry<Rank, Integer> entry : winningRankCounter.entrySet()) {
-            final Rank rank = entry.getKey();
-            final Integer count = entry.getValue();
-
-            if(rank == Rank.NONE) {
+        for (RankResultDto dto : winningRanks) {
+            if (dto.matchedNumberCount() == SECOND_PRIZE_MATCHED_NUMBER_COUNT && dto.prizeMoney() == SECOND_PRIZE_MONEY) {
+                System.out.printf(
+                    LottoOutputGuideMessage.OUTPUT_WINNING_RESULT_SECOND_PRIZE_GUIDE_MESSAGE.getMessage(),
+                    dto.matchedNumberCount(),
+                    dto.prizeMoney(),
+                    dto.count()
+                );
+                System.out.println();
                 continue;
             }
 
-            if(rank == Rank.SECOND_PRIZE) {
-                System.out.println(String.format(LottoOutputGuideMessage.OUTPUT_WINNING_RESULT_SECOND_PRIZE_GUIDE_MESSAGE.getMessage(), rank.getMatchedNumberCount(), rank.getPrizeMoney(), count));
-                continue;
-            }
-
-            System.out.println(String.format(LottoOutputGuideMessage.OUTPUT_WINNING_RESULT_OTHER_PRIZE_GUIDE_MESSAGE.getMessage(), rank.getMatchedNumberCount(), rank.getPrizeMoney(), count));
+            System.out.printf(
+                LottoOutputGuideMessage.OUTPUT_WINNING_RESULT_OTHER_PRIZE_GUIDE_MESSAGE.getMessage(),
+                dto.matchedNumberCount(),
+                dto.prizeMoney(),
+                dto.count()
+            );
+            System.out.println();
         }
     }
 

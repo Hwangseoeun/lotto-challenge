@@ -61,7 +61,7 @@ public class ConsoleClient {
                 final GenerateLottosResponseDto response = mainController.generateLottos(request);
 
                 lottoOutputView.outputLottos(response.lottoQuantity(), response.lottos());
-                lottoOutputView.outputWinningResult(response.winningRankCounter());
+                lottoOutputView.outputWinningResult(response.winningRanks());
                 lottoOutputView.outputReturnRate(response.returnRate());
                 break;
             }

@@ -5,7 +5,6 @@ spring:
     username: root
     password: root
   thymeleaf:
-    prefix: classpath:/templates/thymeleaf/
     check-template-location: true
     suffix: .html
     mode: HTML

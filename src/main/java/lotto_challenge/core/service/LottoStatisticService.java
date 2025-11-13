@@ -1,9 +1,9 @@
 package lotto_challenge.core.service;
 
+import lotto_challenge.core.repository.LottoStatisticRepository;
 import lotto_challenge.core.service.dto.GetLottoStatisticDto;
 import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
 import lotto_challenge.core.service.dto.SaveLottoStatisticDto;
-import lotto_challenge.core.repository.LottoStatisticRepository;
 
 import java.util.List;
 
@@ -20,6 +20,6 @@ public class LottoStatisticService {
     }
 
     public List<LottoStatisticInfoDto> getLottoStatistics(final GetLottoStatisticDto dto) {
-        return lottoStatisticRepository.findByMemberId(dto.memberId());
+        return lottoStatisticRepository.findByMemberEmail(dto.email());
     }
 }

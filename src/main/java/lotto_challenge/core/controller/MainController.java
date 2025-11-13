@@ -13,7 +13,6 @@ import lotto_challenge.core.service.LottoStatisticService;
 import lotto_challenge.core.service.MemberService;
 import lotto_challenge.core.service.dto.GenerateLottoDto;
 import lotto_challenge.core.service.dto.GetLottoStatisticDto;
-import lotto_challenge.core.service.dto.GetMemberDto;
 import lotto_challenge.core.service.dto.JudgeRankDto;
 import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
 import lotto_challenge.core.service.dto.LottosDetailDto;
@@ -70,10 +69,7 @@ public class MainController {
     }
 
     public LottoStatisticResponseDto getLottoStatistics(final LottoStatisticRequestDto request) {
-        final GetMemberDto getMemberDto = new GetMemberDto(request.email());
-        final Long memberId = memberService.getMember(getMemberDto);
-
-        final GetLottoStatisticDto getLottoStatisticDto = new GetLottoStatisticDto(memberId);
+        final GetLottoStatisticDto getLottoStatisticDto = new GetLottoStatisticDto(request.email());
         final List<LottoStatisticInfoDto> lottoStatisticInfo = lottoStatisticService.getLottoStatistics(getLottoStatisticDto);
 
         return new LottoStatisticResponseDto(lottoStatisticInfo);

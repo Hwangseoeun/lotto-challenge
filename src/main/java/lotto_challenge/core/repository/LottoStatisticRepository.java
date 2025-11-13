@@ -1,9 +1,9 @@
 package lotto_challenge.core.repository;
 
 import lotto_challenge.core.database.DBConnectionUtil;
-import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
 import lotto_challenge.core.model.PurchasePrice;
 import lotto_challenge.core.model.ReturnRate;
+import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,8 +42,12 @@ public class LottoStatisticRepository {
         }
     }
 
-    public List<LottoStatisticInfoDto> findByMemberId(final Long memberId) {
-        final String sql = "SELECT * FROM lotto_statistic WHERE member_id = ?";
+    public List<LottoStatisticInfoDto> findByMemberEmail(final String email) {
+        final String sql =
+            "SELECT ls.purchase_price, ls.return_rate " +
+                "FROM lotto_statistic ls " +
+                "JOIN member m ON ls.member_id = m.id " +
+                "WHERE m.email = ?";
 
         List<LottoStatisticInfoDto> results = new ArrayList<>();
 
@@ -54,7 +58,7 @@ public class LottoStatisticRepository {
         try {
             connection = DBConnectionUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, memberId.toString());
+            preparedStatement.setString(1, email);
 
             resultSet = preparedStatement.executeQuery();
 

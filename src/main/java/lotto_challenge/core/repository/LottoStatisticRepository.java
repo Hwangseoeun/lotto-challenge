@@ -4,6 +4,7 @@ import lotto_challenge.core.database.DBConnectionUtil;
 import lotto_challenge.core.model.PurchasePrice;
 import lotto_challenge.core.model.ReturnRate;
 import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class LottoStatisticRepository {
 
     public void save(final Long memberId, final PurchasePrice purchasePrice, final ReturnRate returnRate) {

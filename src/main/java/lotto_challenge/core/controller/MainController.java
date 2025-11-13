@@ -18,9 +18,13 @@ import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
 import lotto_challenge.core.service.dto.LottosDetailDto;
 import lotto_challenge.core.service.dto.SaveEmailDto;
 import lotto_challenge.core.service.dto.SaveLottoStatisticDto;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RestController
 public class MainController {
 
     private final MemberService memberService;
@@ -37,7 +41,8 @@ public class MainController {
         this.lottoStatisticService = lottoStatisticService;
     }
 
-    public GenerateLottosResponseDto generateLottos(final GenerateLottosRequestDto request) {
+    @PostMapping("/api/lotto/generate")
+    public GenerateLottosResponseDto generateLottos(@RequestBody final GenerateLottosRequestDto request) {
         final SaveEmailDto saveEmailDto = new SaveEmailDto(request.email());
         final Long memberId = memberService.save(saveEmailDto);
 
@@ -68,7 +73,8 @@ public class MainController {
         return new ReturnRate(totalReturn, purchasePrice);
     }
 
-    public LottoStatisticResponseDto getLottoStatistics(final LottoStatisticRequestDto request) {
+    @PostMapping("/api/lotto/statistic")
+    public LottoStatisticResponseDto getLottoStatistics(@RequestBody final LottoStatisticRequestDto request) {
         final GetLottoStatisticDto getLottoStatisticDto = new GetLottoStatisticDto(request.email());
         final List<LottoStatisticInfoDto> lottoStatisticInfo = lottoStatisticService.getLottoStatistics(getLottoStatisticDto);
 

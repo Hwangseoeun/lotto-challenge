@@ -2,6 +2,7 @@ package lotto_challenge.core.repository;
 
 import lotto_challenge.core.database.DBConnectionUtil;
 import lotto_challenge.core.model.Member;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@Repository
 public class MemberRepository {
 
     public Long save(final Member member) {

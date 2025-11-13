@@ -3,7 +3,9 @@ package lotto_challenge.core.service;
 import lotto_challenge.core.model.Member;
 import lotto_challenge.core.repository.MemberRepository;
 import lotto_challenge.core.service.dto.SaveEmailDto;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemberService {
 
     private final MemberRepository memberRepository;

@@ -11,10 +11,14 @@ import lotto_challenge.core.model.WinningRankCounter;
 import lotto_challenge.core.service.dto.GenerateLottoDto;
 import lotto_challenge.core.service.dto.JudgeRankDto;
 import lotto_challenge.core.service.dto.LottosDetailDto;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Transactional(readOnly = true)
+@Service
 public class LottoService {
 
     public LottosDetailDto generateLottos(final GenerateLottoDto dto) {

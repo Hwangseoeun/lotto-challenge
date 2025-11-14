@@ -1,5 +1,6 @@
 package lotto_challenge.database;
 
+import lotto_challenge.core.database.DBConnectionUtil;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

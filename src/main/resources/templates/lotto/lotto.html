@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>lotto-challenge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/css/lotto.css}" rel="stylesheet">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 상단 탭 버튼 -->
+    <div class="tabs">
+        <button id="tab-generate" class="tab-button active">
+            🧾 새로운 로또 발급
+        </button>
+        <button id="tab-stats" class="tab-button">
+            📊 로또 수익률 조회
+        </button>
+    </div>
+
+    <!-- 새로운 로또 발급 섹션 -->
+    <section id="section-generate" class="card">
+        <h2 class="card-title">새로운 로또 구매</h2>
+
+        <form id="generate-form" class="form">
+            <div class="form-group">
+                <label for="generate-email">이메일</label>
+                <input id="generate-email" type="email" placeholder="이메일을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+                <label for="generate-price">구매 금액 (원)</label>
+                <input id="generate-price" type="number" min="1000" step="1000"
+                       placeholder="구매 금액을 입력하세요 (1,000원 단위)" required>
+                <p class="helper-text">· 로또 1장당 1,000원</p>
+            </div>
+
+            <button type="submit" class="primary-btn">
+                로또 구매하기
+            </button>
+        </form>
+
+        <!-- 발급 결과 영역 -->
+        <div id="generate-result" class="result-card hidden">
+            <h3 class="result-title">구매한 로또 번호</h3>
+            <div id="result-tickets" class="ticket-list"></div>
+
+            <div class="win-summary">
+                <h3>로또 당첨 결과</h3>
+                <div class="win-summary-row">
+                    <div>1등</div><div id="rank1-count">0개</div>
+                </div>
+                <div class="win-summary-row">
+                    <div>2등</div><div id="rank2-count">0개</div>
+                </div>
+                <div class="win-summary-row">
+                    <div>3등</div><div id="rank3-count">0개</div>
+                </div>
+                <div class="win-summary-row">
+                    <div>4등</div><div id="rank4-count">0개</div>
+                </div>
+                <div class="win-summary-row">
+                    <div>5등</div><div id="rank5-count">0개</div>
+                </div>
+                <div class="win-summary-total">
+                    <div>총 당첨금</div><div id="total-prize">0원</div>
+                </div>
+            </div>
+
+            <div class="yield-box">
+                <span>수익률</span>
+                <span id="result-yield">-100.0%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 로또 수익률 조회 섹션 -->
+    <section id="section-stats" class="card hidden">
+        <h2 class="card-title">로또 통계 조회</h2>
+
+        <form id="stats-form" class="form">
+            <div class="form-group">
+                <label for="stats-email">이메일</label>
+                <input id="stats-email" type="email" placeholder="이메일을 입력하세요" required>
+            </div>
+
+            <button type="submit" class="primary-btn">
+                로또 조회하기
+            </button>
+        </form>
+
+        <!-- 누적 통계 결과 -->
+        <div id="stats-result" class="result-card hidden">
+            <h3 class="result-title">로또 통계</h3>
+            <div id="stats-list" class="stats-list"></div>
+        </div>
+    </section>
+
+    <!-- 두 섹션 공통: 당첨 금액 안내 -->
+    <section class="card prize-card">
+        <h2 class="card-title">당첨 금액 안내</h2>
+        <div class="prize-row">
+            <div class="prize-box grade1">
+                <div class="grade">1등</div>
+                <div class="desc">6개 일치</div>
+                <div class="amount">20억 원</div>
+            </div>
+            <div class="prize-box grade2">
+                <div class="grade">2등</div>
+                <div class="desc">5개 + 보너스</div>
+                <div class="amount">3천만 원</div>
+            </div>
+            <div class="prize-box grade3">
+                <div class="grade">3등</div>
+                <div class="desc">5개 일치</div>
+                <div class="amount">150만 원</div>
+            </div>
+            <div class="prize-box grade4">
+                <div class="grade">4등</div>
+                <div class="desc">4개 일치</div>
+                <div class="amount">5만 원</div>
+            </div>
+            <div class="prize-box grade5">
+                <div class="grade">5등</div>
+                <div class="desc">3개 일치</div>
+                <div class="amount">5천 원</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 에러 메시지 공통 영역 -->
+    <div id="error-toast" class="toast hidden"></div>
+
+</div>
+
+<script th:src="@{/js/lotto.js}"></script>
+</body>
+</html>

@@ -22,6 +22,14 @@ STEP 3. 스텝 1에서 사용한 JDBC 템플릿을 JPA로 변경하기
 - 로또 당첨 번호와 보너스 번호는 사용자가 직접 입력하는 것이 아닌 특정 값으로 정해져있다.(3주차 미션 Lotto와 다른 부분)
 - 그동안의 로또 통계는 당시 로또 구매 금액과 수익률을 함께 출력한다.
 
+1. 새로운 로또 발급
+
+<img width="645" height="685" alt="Image" src="https://github.com/user-attachments/assets/bd44ab62-0a06-4c06-8729-53ab7f8c9b61" />
+
+2. 로또 수익률 조회
+
+<img width="656" height="449" alt="Image" src="https://github.com/user-attachments/assets/fd7d6e88-06ea-4cf5-ae8b-85b9e7b2aaf7" />
+
 
 ## 1️⃣ 추가 기획 구체화 (STEP 1)
 ```default``` : 프리코스 3주차 미션인 Lotto 프로그램 기반
@@ -58,6 +66,8 @@ STEP 3. 스텝 1에서 사용한 JDBC 템플릿을 JPA로 변경하기
 ## 2️⃣ DB 저장할 내용 (STEP 1)
 1. 사용자가 입력한 이메일
 2. 사용자가 로또 발급 시 구매한 로또의 금액과 수익률
+
+<img width="1084" height="443" alt="Image" src="https://github.com/user-attachments/assets/16ef35db-3a1c-45ad-99c9-570ec2f57e91" />
 
 
 ## 📢 미션을 하며 시도하는 새로운 도전들

@@ -1,6 +1,6 @@
 package lotto_challenge.core.repository.jdbc;
 
-import lotto_challenge.core.database.DBConnectionUtil;
+import lotto_challenge.core.repository.jdbc.database.DBConnectionUtil;
 import lotto_challenge.core.model.PurchasePrice;
 import lotto_challenge.core.model.ReturnRate;
 import lotto_challenge.core.repository.LottoStatisticRepository;

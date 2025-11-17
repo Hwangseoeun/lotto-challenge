@@ -1,6 +1,6 @@
 package lotto_challenge.core.repository.jdbc;
 
-import lotto_challenge.core.database.DBConnectionUtil;
+import lotto_challenge.core.repository.jdbc.database.DBConnectionUtil;
 import lotto_challenge.core.model.Member;
 import lotto_challenge.core.repository.MemberRepository;
 import org.springframework.stereotype.Repository;

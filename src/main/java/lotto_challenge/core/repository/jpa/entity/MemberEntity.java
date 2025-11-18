@@ -1,4 +1,4 @@
-package lotto_challenge.web.repository.entity;
+package lotto_challenge.core.repository.jpa.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

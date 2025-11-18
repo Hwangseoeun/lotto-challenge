@@ -25,6 +25,10 @@ public class MemberEntity {
         this.email = member.getEmail();
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Member toMember() {
         return new Member(email);
     }

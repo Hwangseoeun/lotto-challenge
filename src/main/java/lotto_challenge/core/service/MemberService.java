@@ -18,7 +18,7 @@ public class MemberService {
         final Member member = new Member(dto.email());
 
         if(memberRepository.existsByEmail(member.getEmail())) {
-            return memberRepository.findMemberIdByEmail(member.getEmail());
+            return memberRepository.findIdByEmail(member.getEmail());
         }
 
         return memberRepository.save(member);

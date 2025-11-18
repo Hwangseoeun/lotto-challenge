@@ -24,6 +24,6 @@ public class LottoStatisticService {
 
     @Transactional(readOnly = true)
     public List<LottoStatisticInfoDto> getLottoStatistics(final GetLottoStatisticDto dto) {
-        return lottoStatisticRepository.findByMemberEmail(dto.email());
+        return lottoStatisticRepository.findAllByMemberEmail(dto.email());
     }
 }

@@ -10,5 +10,5 @@ public interface LottoStatisticRepository {
 
     void save(final Long memberId, final PurchasePrice purchasePrice, final ReturnRate returnRate);
 
-    List<LottoStatisticInfoDto> findByMemberEmail(final String email);
+    List<LottoStatisticInfoDto> findAllByMemberEmail(final String email);
 }

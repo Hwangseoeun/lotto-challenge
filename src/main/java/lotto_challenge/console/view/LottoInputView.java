@@ -4,9 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class LottoInputView {
 
-    private static final String NUMBER_SEPARATOR_PATTERN = ",";
-    private static final String NUMBER_PATTERN = "0-9";
-
     public String inputStartOption() {
         System.out.println(LottoInputGuideMessage.INPUT_START_OPTION_GUIDE_MESSAGE.getMessage());
         System.out.println(LottoInputGuideMessage.FIRST_OPTION_MESSAGE.getMessage());

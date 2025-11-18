@@ -1,11 +1,10 @@
 package lotto_challenge.core.repository.jdbc;
 
-import lotto_challenge.core.repository.jdbc.database.DBConnectionUtil;
 import lotto_challenge.core.model.PurchasePrice;
 import lotto_challenge.core.model.ReturnRate;
 import lotto_challenge.core.repository.LottoStatisticRepository;
+import lotto_challenge.core.repository.jdbc.database.DBConnectionUtil;
 import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
-import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+//@Repository
 public class JDBCLottoStatisticRepository implements LottoStatisticRepository {
 
     @Override
@@ -47,7 +46,7 @@ public class JDBCLottoStatisticRepository implements LottoStatisticRepository {
     }
 
     @Override
-    public List<LottoStatisticInfoDto> findByMemberEmail(final String email) {
+    public List<LottoStatisticInfoDto> findAllByMemberEmail(final String email) {
         final String sql =
             "SELECT ls.purchase_price, ls.return_rate " +
                 "FROM lotto_statistic ls " +

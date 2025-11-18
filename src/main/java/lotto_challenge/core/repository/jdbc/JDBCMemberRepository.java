@@ -1,9 +1,8 @@
 package lotto_challenge.core.repository.jdbc;
 
-import lotto_challenge.core.repository.jdbc.database.DBConnectionUtil;
 import lotto_challenge.core.model.Member;
 import lotto_challenge.core.repository.MemberRepository;
-import org.springframework.stereotype.Repository;
+import lotto_challenge.core.repository.jdbc.database.DBConnectionUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-@Repository
+//@Repository
 public class JDBCMemberRepository implements MemberRepository {
 
     @Override
@@ -90,7 +89,7 @@ public class JDBCMemberRepository implements MemberRepository {
     }
 
     @Override
-    public Long findMemberIdByEmail(final String email) {
+    public Long findIdByEmail(final String email) {
         final String sql = "SELECT id FROM member WHERE email = ?";
 
         Connection connection = null;

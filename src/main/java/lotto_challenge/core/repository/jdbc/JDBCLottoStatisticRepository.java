@@ -17,7 +17,11 @@ import java.util.List;
 public class JDBCLottoStatisticRepository implements LottoStatisticRepository {
 
     @Override
-    public void save(final Long memberId, final PurchasePrice purchasePrice, final ReturnRate returnRate) {
+    public void save(
+        final Long memberId,
+        final PurchasePrice purchasePrice,
+        final ReturnRate returnRate
+    ) {
         final String sql = "INSERT INTO lotto_statistic(member_id, purchase_price, return_rate) VALUES (?, ?, ?)";
 
         Connection connection = null;

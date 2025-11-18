@@ -35,7 +35,11 @@ public class LottoService {
 
         final Lottos savedLottos = new Lottos(lottos);
 
-        return new LottosDetailDto(price, lottoQuantity, savedLottos);
+        return new LottosDetailDto(
+            price,
+            lottoQuantity,
+            savedLottos
+        );
     }
 
     public void judgeRank(final JudgeRankDto dto) {

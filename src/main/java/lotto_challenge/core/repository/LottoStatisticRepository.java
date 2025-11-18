@@ -8,7 +8,11 @@ import java.util.List;
 
 public interface LottoStatisticRepository {
 
-    void save(final Long memberId, final PurchasePrice purchasePrice, final ReturnRate returnRate);
+    void save(
+        final Long memberId,
+        final PurchasePrice purchasePrice,
+        final ReturnRate returnRate
+    );
 
     List<LottoStatisticInfoDto> findAllByMemberEmail(final String email);
 }

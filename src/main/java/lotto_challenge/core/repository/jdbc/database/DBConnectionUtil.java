@@ -12,7 +12,11 @@ public class DBConnectionUtil {
 
     public static Connection getConnection() {
         try {
-            final Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            final Connection connection = DriverManager.getConnection(
+                URL,
+                USERNAME,
+                PASSWORD
+            );
             return connection;
         }
         catch (SQLException e) {

@@ -32,7 +32,11 @@ public class LottoStatisticEntity {
 
     public LottoStatisticEntity() {}
 
-    public LottoStatisticEntity(final MemberEntity member, final PurchasePrice purchasePrice, final ReturnRate returnRate) {
+    public LottoStatisticEntity(
+        final MemberEntity member,
+        final PurchasePrice purchasePrice,
+        final ReturnRate returnRate
+    ) {
         this.member = member;
         this.purchasePrice = purchasePrice.getValue();
         this.returnRate = returnRate.getValue();

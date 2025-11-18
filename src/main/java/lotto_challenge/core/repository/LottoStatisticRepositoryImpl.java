@@ -23,9 +23,19 @@ public class LottoStatisticRepositoryImpl implements LottoStatisticRepository {
     }
 
     @Override
-    public void save(final Long memberId, final PurchasePrice purchasePrice, final ReturnRate returnRate) {
-        final MemberEntity memberEntity = jpaMemberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("Member Id: " + memberId + " not found"));
-        final LottoStatisticEntity lottoStatisticEntity = new LottoStatisticEntity(memberEntity, purchasePrice, returnRate);
+    public void save(
+        final Long memberId,
+        final PurchasePrice purchasePrice,
+        final ReturnRate returnRate
+    ) {
+        final MemberEntity memberEntity = jpaMemberRepository.findById(memberId)
+            .orElseThrow(() -> new IllegalArgumentException("Member Id: " + memberId + " not found"));
+
+        final LottoStatisticEntity lottoStatisticEntity = new LottoStatisticEntity(
+            memberEntity,
+            purchasePrice,
+            returnRate
+        );
         jpaLottoStatisticRepository.save(lottoStatisticEntity);
     }
 

@@ -39,13 +39,14 @@ public class AppConfig {
     }
 
     public MainController mainController() {
-        return new MainController(memberService(), lottoService(), lottoStatisticService());
+        return new MainController(
+            memberService(),
+            lottoService(),
+            lottoStatisticService()
+        );
     }
 
-    public ConsoleClient consoleClient(
-        final InputHandler inputHandler,
-        final MainController mainController
-    ) {
+    public ConsoleClient consoleClient(final InputHandler inputHandler, final MainController mainController) {
         return new ConsoleClient(
             inputHandler,
             lottoOutputView,

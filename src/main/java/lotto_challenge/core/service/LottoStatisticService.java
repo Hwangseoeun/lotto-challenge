@@ -19,7 +19,11 @@ public class LottoStatisticService {
     }
 
     public void saveLottoStatistic(final SaveLottoStatisticDto dto) {
-        lottoStatisticRepository.save(dto.memberId(), dto.getPurchasePrice(), dto.getReturnRate());
+        lottoStatisticRepository.save(
+            dto.memberId(),
+            dto.getPurchasePrice(),
+            dto.getReturnRate()
+        );
     }
 
     @Transactional(readOnly = true)

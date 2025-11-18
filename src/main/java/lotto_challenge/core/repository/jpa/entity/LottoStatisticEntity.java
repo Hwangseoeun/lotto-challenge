@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lotto_challenge.core.model.Member;
 import lotto_challenge.core.model.PurchasePrice;
 import lotto_challenge.core.model.ReturnRate;
 
@@ -33,8 +32,8 @@ public class LottoStatisticEntity {
 
     public LottoStatisticEntity() {}
 
-    public LottoStatisticEntity(final Member member, final PurchasePrice purchasePrice, final ReturnRate returnRate) {
-        this.member = new MemberEntity(member);
+    public LottoStatisticEntity(final MemberEntity member, final PurchasePrice purchasePrice, final ReturnRate returnRate) {
+        this.member = member;
         this.purchasePrice = purchasePrice.getValue();
         this.returnRate = returnRate.getValue();
     }

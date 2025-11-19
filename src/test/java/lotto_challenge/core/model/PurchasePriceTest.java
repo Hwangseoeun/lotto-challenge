@@ -1,4 +1,4 @@
-package lotto_challenge.model;
+package lotto_challenge.core.model;
 
 import lotto_challenge.core.model.PurchasePrice;
 import org.junit.jupiter.api.DisplayName;

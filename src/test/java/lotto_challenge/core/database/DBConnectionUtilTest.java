@@ -1,4 +1,4 @@
-package lotto_challenge.database;
+package lotto_challenge.core.database;
 
 import lotto_challenge.core.repository.jdbc.database.DBConnectionUtil;
 import org.assertj.core.api.Assertions;

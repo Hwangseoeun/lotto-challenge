@@ -1,4 +1,4 @@
-package lotto_challenge.model;
+package lotto_challenge.core.model;
 
 import lotto_challenge.core.model.Lotto;
 import lotto_challenge.core.model.Lottos;

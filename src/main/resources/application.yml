@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/lotto-challenge
+    url: jdbc:mysql://mysql:3306/lotto-challenge
     username: root
     password: root
   jpa:

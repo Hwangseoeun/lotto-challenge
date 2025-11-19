@@ -1,7 +1,9 @@
+name: lotto-challenge
+
 services:
   mysql:
     image: mysql:8.3.0
-    container_name: lotto-challenge
+    container_name: lotto-challenge-mysql
     ports:
       - "3307:3306"
     volumes:
@@ -14,3 +16,19 @@ services:
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
+    networks:
+      - lotto-net
+
+  web:
+    image: lotto-challenge-web
+    container_name: lotto-challenge-web
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - lotto-net
+
+networks:
+  lotto-net:
+    external: true

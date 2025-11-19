@@ -18,6 +18,10 @@ public class FakeAppConfig {
     public FakeAppConfig() {
     }
 
+    public static MemberRepository getFakeMemberRepository() {
+        return fakeMemberRepository;
+    }
+
     public static MemberService getMemberService() {
         return memberService;
     }

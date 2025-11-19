@@ -1,7 +1,6 @@
 package lotto_challenge.core.repository;
 
 import lotto_challenge.core.model.Member;
-import lotto_challenge.core.repository.MemberRepository;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -22,6 +22,10 @@ public class FakeAppConfig {
         return fakeMemberRepository;
     }
 
+    public static LottoStatisticRepository getFakeLottoStatisticRepository() {
+        return fakeLottoStatisticRepository;
+    }
+
     public static MemberService getMemberService() {
         return memberService;
     }

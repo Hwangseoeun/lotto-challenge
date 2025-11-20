@@ -4,11 +4,12 @@ import lotto_challenge.console.config.FakeAppConfig;
 import lotto_challenge.core.model.Member;
 import lotto_challenge.core.model.PurchasePrice;
 import lotto_challenge.core.model.ReturnRate;
-import lotto_challenge.core.repository.LottoStatisticRepository;
-import lotto_challenge.core.repository.MemberRepository;
+import lotto_challenge.core.repository.FakeLottoStatisticRepository;
+import lotto_challenge.core.repository.FakeMemberRepository;
 import lotto_challenge.core.service.dto.GetLottoStatisticDto;
 import lotto_challenge.core.service.dto.LottoStatisticInfoDto;
 import lotto_challenge.core.service.dto.SaveLottoStatisticDto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,13 +20,21 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 
 class LottoStatisticServiceTest {
 
-    private static LottoStatisticService createLottoStatisticService() {
-        return new LottoStatisticService(FakeAppConfig.getFakeLottoStatisticRepository());
+    private static LottoStatisticService lottoStatisticService;
+    private static FakeMemberRepository fakeMemberRepository;
+    private static FakeLottoStatisticRepository fakeLottoStatisticRepository;
+
+    @BeforeEach
+    void setUp() {
+        FakeAppConfig config = new FakeAppConfig();
+        fakeMemberRepository = config.createFakeMemberRepository();
+        fakeLottoStatisticRepository = config.createFakeLottoStatisticRepository(fakeMemberRepository);
+        lottoStatisticService = config.createLottoStatisticService(fakeLottoStatisticRepository);
     }
 
-    private final LottoStatisticService lottoStatisticService = FakeAppConfig.getLottoStatisticService();
-    private final MemberRepository fakeMemberRepository = FakeAppConfig.getFakeMemberRepository();
-    private final LottoStatisticRepository fakeLottoStatisticRepository = FakeAppConfig.getFakeLottoStatisticRepository();
+    private static LottoStatisticService createLottoStatisticService() {
+        return new LottoStatisticService(fakeLottoStatisticRepository);
+    }
 
     @DisplayName("생성자에 유효한 입력값(lottoStatistic repository)을 입력하면 LottoStatisticService 인스턴스가 생성된다.")
     @Test

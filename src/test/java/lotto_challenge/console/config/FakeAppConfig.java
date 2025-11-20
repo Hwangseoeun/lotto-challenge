@@ -1,36 +1,28 @@
 package lotto_challenge.console.config;
 
-import lotto_challenge.core.repository.LottoStatisticRepository;
-import lotto_challenge.core.repository.MemberRepository;
-import lotto_challenge.core.service.LottoStatisticService;
-import lotto_challenge.core.service.MemberService;
 import lotto_challenge.core.repository.FakeLottoStatisticRepository;
 import lotto_challenge.core.repository.FakeMemberRepository;
+import lotto_challenge.core.service.LottoStatisticService;
+import lotto_challenge.core.service.MemberService;
 
 public class FakeAppConfig {
-
-    private static final MemberRepository fakeMemberRepository = new FakeMemberRepository();
-    private static final LottoStatisticRepository fakeLottoStatisticRepository = new FakeLottoStatisticRepository((FakeMemberRepository) fakeMemberRepository);
-
-    private static final MemberService memberService = new MemberService(fakeMemberRepository);
-    private static final LottoStatisticService lottoStatisticService = new LottoStatisticService(fakeLottoStatisticRepository);
 
     public FakeAppConfig() {
     }
 
-    public static MemberRepository getFakeMemberRepository() {
-        return fakeMemberRepository;
+    public FakeMemberRepository createFakeMemberRepository() {
+        return new FakeMemberRepository();
     }
 
-    public static LottoStatisticRepository getFakeLottoStatisticRepository() {
-        return fakeLottoStatisticRepository;
+    public FakeLottoStatisticRepository createFakeLottoStatisticRepository(FakeMemberRepository fakeMemberRepository) {
+        return new FakeLottoStatisticRepository(fakeMemberRepository);
     }
 
-    public static MemberService getMemberService() {
-        return memberService;
+    public MemberService createMemberService(FakeMemberRepository fakeMemberRepository) {
+        return new MemberService(fakeMemberRepository);
     }
 
-    public static LottoStatisticService getLottoStatisticService() {
-        return lottoStatisticService;
+    public LottoStatisticService createLottoStatisticService(FakeLottoStatisticRepository fakeLottoStatisticRepository) {
+        return new LottoStatisticService(fakeLottoStatisticRepository);
     }
 }

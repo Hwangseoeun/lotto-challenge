@@ -1,4 +1,4 @@
-package lotto_challenge.core.database;
+package lotto_challenge.core.repository.jdbc.database;
 
 public abstract class ConnectionConst {
 

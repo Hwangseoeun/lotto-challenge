@@ -15,6 +15,11 @@ public class LottoOutputView {
         System.out.println();
     }
 
+    public void outputServerExceptionMessage(final Exception e) {
+        System.out.println(LottoOutputGuideMessage.OUTPUT_SERVER_EXCEPTION_GUIDE_MESSAGE.getMessage());
+        System.out.println();
+    }
+
     public void outputLottos(final int lottoQuantity, final List<List<Integer>> lottos) {
         System.out.println(lottoQuantity + LottoOutputGuideMessage.OUTPUT_LOTTO_QUANTITY_GUIDE_MESSAGE.getMessage());
 

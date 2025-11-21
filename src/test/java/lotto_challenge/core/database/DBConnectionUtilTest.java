@@ -1,6 +1,6 @@
-package lotto_challenge.database;
+package lotto_challenge.core.database;
 
-import lotto_challenge.core.database.DBConnectionUtil;
+import lotto_challenge.core.repository.jdbc.database.DBConnectionUtil;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

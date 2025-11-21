@@ -48,7 +48,11 @@ public class Lotto {
     }
 
     public static Lotto generate(final RandomNumberGenerator randomNumberGenerator) {
-        final List<Integer> numbers = randomNumberGenerator.pickRandomLottoNumbers(RandomNumberGenerator.MIN_RANDOM_NUMBER, RandomNumberGenerator.MAX_RANDOM_NUMBER, RandomNumberGenerator.NUMBER_COUNT);
+        final List<Integer> numbers = randomNumberGenerator.pickRandomLottoNumbers(
+            RandomNumberGenerator.MIN_RANDOM_NUMBER,
+            RandomNumberGenerator.MAX_RANDOM_NUMBER,
+            RandomNumberGenerator.NUMBER_COUNT
+        );
 
         return new Lotto(numbers);
     }

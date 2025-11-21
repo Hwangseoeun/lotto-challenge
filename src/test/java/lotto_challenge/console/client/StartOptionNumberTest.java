@@ -1,4 +1,4 @@
-package lotto_challenge.client;
+package lotto_challenge.console.client;
 
 import lotto_challenge.console.client.StartOptionNumber;
 import org.junit.jupiter.api.DisplayName;

@@ -53,10 +53,18 @@ public class MainController {
 
         final ReturnRate returnRate = calculateReturnRate(winningRankCounter, lottosDetail.purchasePrice());
 
-        final SaveLottoStatisticDto saveLottoStatisticDto = new SaveLottoStatisticDto(memberId, lottosDetail.purchasePrice(), returnRate);
+        final SaveLottoStatisticDto saveLottoStatisticDto = new SaveLottoStatisticDto(
+            memberId,
+            lottosDetail.purchasePrice(),
+            returnRate
+        );
         lottoStatisticService.saveLottoStatistic(saveLottoStatisticDto);
 
-        return GenerateLottosResponseDto.from(lottosDetail, winningRankCounter, returnRate);
+        return GenerateLottosResponseDto.from(
+            lottosDetail,
+            winningRankCounter,
+            returnRate
+        );
     }
 
     private WinningRankCounter calculateWinningRank(final Lottos lottos) {

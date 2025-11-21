@@ -1,4 +1,4 @@
-package lotto_challenge.model;
+package lotto_challenge.core.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

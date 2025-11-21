@@ -1,7 +1,7 @@
 package lotto_challenge.console.client;
 
+import lotto_challenge.console.client.api.ApiClient;
 import lotto_challenge.console.view.LottoOutputView;
-import lotto_challenge.core.controller.MainController;
 import lotto_challenge.core.controller.dto.request.GenerateLottosRequestDto;
 import lotto_challenge.core.controller.dto.request.LottoStatisticRequestDto;
 import lotto_challenge.core.controller.dto.response.GenerateLottosResponseDto;
@@ -15,16 +15,16 @@ public class ConsoleClient {
 
     private final InputHandler inputHandler;
     private final LottoOutputView lottoOutputView;
-    private final MainController mainController;
+    private final ApiClient apiClient;
 
     public ConsoleClient(
         final InputHandler inputHandler,
         final LottoOutputView lottoOutputView,
-        final MainController mainController
+        final ApiClient apiClient
         ) {
         this.inputHandler = inputHandler;
         this.lottoOutputView = lottoOutputView;
-        this.mainController = mainController;
+        this.apiClient = apiClient;
     }
 
     public void start() {
@@ -58,7 +58,7 @@ public class ConsoleClient {
                 final String price = inputHandler.getPurchasePrice();
 
                 final GenerateLottosRequestDto request = new GenerateLottosRequestDto(member, price);
-                final GenerateLottosResponseDto response = mainController.generateLottos(request);
+                final GenerateLottosResponseDto response = apiClient.generateLottosApi(request);
 
                 lottoOutputView.outputLottos(response.lottoQuantity(), response.lottos());
                 lottoOutputView.outputWinningResult(response.winningRanks());
@@ -68,22 +68,26 @@ public class ConsoleClient {
             catch (IllegalArgumentException e) {
                 lottoOutputView.outputExceptionMessage(e);
             }
+            catch (Exception e) {
+                lottoOutputView.outputServerExceptionMessage(e);
+            }
         }
     }
 
     private void startSecondOption() {
-        while(true) {
+        while (true) {
             try {
                 final String member = inputHandler.getMemberEmail();
 
                 final LottoStatisticRequestDto request = new LottoStatisticRequestDto(member);
-                final LottoStatisticResponseDto response = mainController.getLottoStatistics(request);
+                final LottoStatisticResponseDto response = apiClient.getLottoStatisticsApi(request);
 
                 lottoOutputView.outputLottoStatistics(response.lottoStatisticInfos());
                 break;
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 lottoOutputView.outputInvalidMember();
+            } catch (Exception e) {
+                lottoOutputView.outputServerExceptionMessage(e);
             }
         }
     }

@@ -8,5 +8,9 @@ public interface RandomNumberGenerator {
     int MAX_RANDOM_NUMBER = 45;
     int NUMBER_COUNT = 6;
 
-    List<Integer> pickRandomLottoNumbers(final int minRandomNumber, final int maxRandomNumber, final int numberCount);
+    List<Integer> pickRandomLottoNumbers(
+        final int minRandomNumber,
+        final int maxRandomNumber,
+        final int numberCount
+    );
 }

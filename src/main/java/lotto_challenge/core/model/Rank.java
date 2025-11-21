@@ -17,7 +17,11 @@ public enum Rank {
     private final int prizeMoney;
     private final BiFunction<Integer, Boolean, Boolean> isMatchedCondition;
 
-    Rank(final int matchedNumberCount, final int prizeMoney, final BiFunction<Integer, Boolean, Boolean> isMatchedCondition) {
+    Rank(
+        final int matchedNumberCount,
+        final int prizeMoney,
+        final BiFunction<Integer, Boolean, Boolean> isMatchedCondition
+    ) {
         this.matchedNumberCount = matchedNumberCount;
         this.prizeMoney = prizeMoney;
         this.isMatchedCondition = isMatchedCondition;

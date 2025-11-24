@@ -1,12 +1,12 @@
 ## 목차
 [1. 미션 목표](#-미션-목표)\
 [2. 미션 STEP](#-미션-step)\
-[3. 각 STEP 별 작업 내용 PR](#각-step-별-작업-내용-pr)\
+[3. 각 STEP 별 작업 내용 PR](#-각-step-별-작업-내용-pr)\
 [4. Main 브랜치 프로그램 실행 방법](#-main-브랜치-프로그램-실행-방법)\
 [5. 미션 기획 내용](#-미션-기획-내용)\
-[6. STEP 01 추가 내용](#1-추가-기획-구체화-step-1)\
-&nbsp;&nbsp;&nbsp;&nbsp;[6-1. 추가 기획 구체화](#1-추가-기획-구체화-step-1)\
-&nbsp;&nbsp;&nbsp;&nbsp;[6-2. DB 저장할 내용](#2-db-저장할-내용-step-1)\
+[6. STEP 01 추가 내용](#-추가-기획-구체화-step-1)\
+&nbsp;&nbsp;&nbsp;&nbsp;[6-1. 추가 기획 구체화](#-추가-기획-구체화-step-1)\
+&nbsp;&nbsp;&nbsp;&nbsp;[6-2. DB 저장할 내용](#-db-저장할-내용-step-1)\
 [7. 미션을 하며 시도하는 새로운 도전들](#-미션을-하며-시도하는-새로운-도전들)
 
 
@@ -24,7 +24,7 @@ STEP 2. 기존 콘솔 프로그램에 웹 인터페이스 추가하기 + spring 
 STEP 3. 스텝 1에서 사용한 JDBC 템플릿을 JPA로 변경하기
 
 
-## ⭐️각 STEP 별 작업 내용 PR
+## ⭐ 각 STEP 별 작업 내용 PR
 STEP 01 : https://github.com/Hwangseoeun/lotto-challenge/pull/1
 
 STEP 02 (stop) : https://github.com/Hwangseoeun/lotto-challenge/pull/2
@@ -35,7 +35,7 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
 
 
 ## 🎰 Main 브랜치 프로그램 실행 방법
-1. application.yml 파일의 spring.jpa.hibernate.ddl-auto를 create로 변경한다.
+1. application.yml 파일의 spring.jpa.hibernate.ddl-auto를 ```create```로 변경한다.
     ```Yml
     # yml 경로 : lotto-challenge/src/main/resources/application.yml
     spring:
@@ -44,7 +44,7 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
    ```
 
 
-2. docker를 띄우기 위한 docker network를 설정해준다.
+2. docker를 띄우기 위한 ```docker network```를 설정해준다.
     ```Shell
     # docker-compose.yml 파일이 있는 위치의 경로로 들어가 터미널에 다음 명령어를 입력한다.
    # docker-compose.yml 경로 : lotto-challenge/docker/docker-compose.yml
@@ -52,14 +52,14 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
    ```
 
 
-3. docker-compose.yml의 mysql 컨테이너를 실행시킨다.
+3. docker-compose.yml의 ```mysql 컨테이너```를 실행시킨다.
     ```Shell
    # docker-compose.yml 경로 : lotto-challenge/docker/docker-compose.yml
    docker-compose up mysql -d
    ```
 
 
-4. Spring Boot 어플리케이션의 Docker 이미지를 빌드한다.
+4. Spring Boot 어플리케이션의 ```Docker 이미지를 빌드```한다.
     ```Shell
    # 최상위 경로에서 해당 명령어를 입력한다.
    # 경로 : lotto-challenge
@@ -67,14 +67,14 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
    ```
 
 
-5. docker-compose.yml의 web 컨테이너를 실행시킨다.
+5. docker-compose.yml의 ```web 컨테이너```를 실행시킨다.
     ```Shell
    # docker-compose.yml 경로 : lotto-challenge/docker/docker-compose.yml
    docker-compose up web -d
    ```
 
 
-6. application.yml 파일의 spring.jpa.hibernate.ddl-auto를 none으로 변경한다.
+6. application.yml 파일의 spring.jpa.hibernate.ddl-auto를 ```none```으로 변경한다.
     ```Yml
     # yml 경로 : lotto-challenge/src/main/resources/application.yml
     spring:
@@ -102,7 +102,7 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
 <img width="656" height="449" alt="Image" src="https://github.com/user-attachments/assets/fd7d6e88-06ea-4cf5-ae8b-85b9e7b2aaf7" />
 
 
-## 1️⃣ 추가 기획 구체화 (STEP 1)
+## 🌗 추가 기획 구체화 (STEP 1)
 ```default``` : 프리코스 3주차 미션인 Lotto 프로그램 기반
 
 - 사용자로부터 새로운 로또를 발급할지, 그동안의 로또 수익률을 조회할지 여부를 입력받는 기능
@@ -134,7 +134,7 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
 - 사용자가 입력한 이메일을 기반으로 그동안의 수익률을 조회하는 기능
 
 
-## 2️⃣ DB 저장할 내용 (STEP 1)
+## 🌓 DB 저장할 내용 (STEP 1)
 1. 사용자가 입력한 이메일
 2. 사용자가 로또 발급 시 구매한 로또의 금액과 수익률
 

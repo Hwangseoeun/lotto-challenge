@@ -3,12 +3,13 @@
 [2. 미션 STEP](#-미션-step)\
 [3. 각 STEP 별 작업 내용 PR](#-각-step-별-작업-내용-pr)\
 [4. 프로그램 실행 전 안내](#-프로그램-실행-전-안내)\
-[5. Main 브랜치 프로그램 실행 방법](#-main-브랜치-프로그램-실행-방법)\
-[6. 미션 기획 내용](#-미션-기획-내용)\
-[7. STEP 01 추가 내용](#-추가-기획-구체화-step-1)\
-&nbsp;&nbsp;&nbsp;&nbsp;[7-1. 추가 기획 구체화](#-추가-기획-구체화-step-1)\
-&nbsp;&nbsp;&nbsp;&nbsp;[7-2. DB 저장할 내용](#-db-저장할-내용-step-1)\
-[8. 미션을 하며 시도하는 새로운 도전들](#-미션을-하며-시도하는-새로운-도전들)
+[5. Main 브랜치 프로그램 실행 전 세팅](#-main-브랜치-프로그램-실행-전-세팅)\
+[6. Main 브랜치 프로그램 실행 방법](#-main-브랜치-프로그램-실행-방법)\
+[7. 미션 기획 내용](#-미션-기획-내용)\
+[8. STEP 01 추가 내용](#-추가-기획-구체화-step-1)\
+&nbsp;&nbsp;&nbsp;&nbsp;[8-1. 추가 기획 구체화](#-추가-기획-구체화-step-1)\
+&nbsp;&nbsp;&nbsp;&nbsp;[8-2. DB 저장할 내용](#-db-저장할-내용-step-1)\
+[9. 미션을 하며 시도하는 새로운 도전들](#-미션을-하며-시도하는-새로운-도전들)
 
 
 ## 🎯 미션 목표
@@ -41,7 +42,7 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
 이로 인해 아래의 'Main 브랜치 프로그램 실행 방법'을 참고하여 docker 컨테이너를 띄운 후 console 프로그램 or web 프로그램을 실행시키시길 바랍니다.
 
 
-## 🎰 Main 브랜치 프로그램 실행 방법
+## 🔫 Main 브랜치 프로그램 실행 전 세팅
 1. application.yml 파일의 spring.jpa.hibernate.ddl-auto를 ```create```로 변경한다.
     ```Yml
     # yml 경로 : lotto-challenge/src/main/resources/application.yml
@@ -53,20 +54,41 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
 
 2. docker를 띄우기 위한 ```docker network```를 설정해준다.
     ```Shell
-    # docker-compose.yml 파일이 있는 위치의 경로로 들어가 터미널에 다음 명령어를 입력한다.
-   # docker-compose.yml 경로 : lotto-challenge/docker/docker-compose.yml
     docker network create lotto-net
    ```
 
 
 3. docker-compose.yml의 ```mysql 컨테이너```를 실행시킨다.
     ```Shell
+   # docker-compose.yml 파일이 있는 위치의 경로로 들어가 터미널에 다음 명령어를 입력한다.
    # docker-compose.yml 경로 : lotto-challenge/docker/docker-compose.yml
+   
+   # docker-.compose.yml 파일이 있는 docker 폴더로 이동
+   cd docker
    docker-compose up mysql -d
+   ```
+   
+
+4. mysql 컨테이너가 잘 실행되고 있는지 확인한다.
+    ```Shell
+   # 현재 실행 중인 컨테이너에 mysql이 있는지 확인한다.
+   # names : lotto-challenge-mysql, status : up 인지 확인
+   docker ps
    ```
 
 
-4. Spring Boot 어플리케이션의 ```Docker 이미지를 빌드```한다.
+5. Spring Boot 어플리케이션을 빌드한다.
+    ```Shell
+   # 최상위 경로에서 해당 명령어를 입력한다.
+   # 경로 : lotto-challenge
+   
+   # 최상위 경로로 이동
+   cd ..
+   ./gradlew clean build
+   ```
+
+
+6. Spring Boot 어플리케이션의 ```Docker 이미지를 빌드```한다.
     ```Shell
    # 최상위 경로에서 해당 명령어를 입력한다.
    # 경로 : lotto-challenge
@@ -74,20 +96,52 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
    ```
 
 
-5. docker-compose.yml의 ```web 컨테이너```를 실행시킨다.
+7. docker-compose.yml의 ```web 컨테이너```를 실행시킨다.
     ```Shell
+   # docker-compose.yml 파일이 있는 위치의 경로로 들어가 터미널에 다음 명령어를 입력한다.
    # docker-compose.yml 경로 : lotto-challenge/docker/docker-compose.yml
+   
+   # docker-.compose.yml 파일이 있는 docker 폴더로 이동
+   cd docker
    docker-compose up web -d
    ```
 
 
-6. application.yml 파일의 spring.jpa.hibernate.ddl-auto를 ```none```으로 변경한다.
+8. web 컨테이너가 잘 실행되고 있는지 확인한다.
+    ```Shell
+   # 현재 실행 중인 컨테이너에 web이 있는지 확인한다.
+   # names : lotto-challenge-web, status : up 인지 확인
+   docker ps
+   ```
+
+
+9. application.yml 파일의 spring.jpa.hibernate.ddl-auto를 ```none```으로 변경한다.
     ```Yml
     # yml 경로 : lotto-challenge/src/main/resources/application.yml
     spring:
         jpa:
             hibernate.ddl-auto: none
    ```
+   
+
+10. 스프링부트가 잘 실행되고 있는지 체크한다.
+    ```
+    # 웹 사이트에 해당 경로를 입력하여 화면에 OK가 뜨는지 확인한다.
+    http://localhost:8080/health-check
+    ```
+    
+
+11. 이 모든 과정이 잘 되었다면 프로그램 실행 전 세팅이 완료되었다!
+
+
+## 🎰 Main 브랜치 프로그램 실행 방법
+### Console 프로그램 실행 방법
+    # ConsoleApplication을 실행한다.
+    # 경로 : lotto-challenge/src/main/java/lotto_challenge/ConsoleApplication.java
+
+### Web 프로그램 실행 방법
+    # 웹 사이트에 해당 경로를 입력한다.
+    # http://localhost:8080/lotto
 
 
 ## 🚀 미션 기획 내용

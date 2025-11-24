@@ -2,12 +2,13 @@
 [1. 미션 목표](#-미션-목표)\
 [2. 미션 STEP](#-미션-step)\
 [3. 각 STEP 별 작업 내용 PR](#-각-step-별-작업-내용-pr)\
-[4. Main 브랜치 프로그램 실행 방법](#-main-브랜치-프로그램-실행-방법)\
-[5. 미션 기획 내용](#-미션-기획-내용)\
-[6. STEP 01 추가 내용](#-추가-기획-구체화-step-1)\
-&nbsp;&nbsp;&nbsp;&nbsp;[6-1. 추가 기획 구체화](#-추가-기획-구체화-step-1)\
-&nbsp;&nbsp;&nbsp;&nbsp;[6-2. DB 저장할 내용](#-db-저장할-내용-step-1)\
-[7. 미션을 하며 시도하는 새로운 도전들](#-미션을-하며-시도하는-새로운-도전들)
+[4. 프로그램 실행 전 안내](#-프로그램-실행-전-안내)\
+[5. Main 브랜치 프로그램 실행 방법](#-main-브랜치-프로그램-실행-방법)\
+[6. 미션 기획 내용](#-미션-기획-내용)\
+[7. STEP 01 추가 내용](#-추가-기획-구체화-step-1)\
+&nbsp;&nbsp;&nbsp;&nbsp;[7-1. 추가 기획 구체화](#-추가-기획-구체화-step-1)\
+&nbsp;&nbsp;&nbsp;&nbsp;[7-2. DB 저장할 내용](#-db-저장할-내용-step-1)\
+[8. 미션을 하며 시도하는 새로운 도전들](#-미션을-하며-시도하는-새로운-도전들)
 
 
 ## 🎯 미션 목표
@@ -32,6 +33,12 @@ STEP 02 (stop) : https://github.com/Hwangseoeun/lotto-challenge/pull/2
 STEP 02 (improve) : https://github.com/Hwangseoeun/lotto-challenge/pull/3
 
 STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
+
+
+## ⚠️ 프로그램 실행 전 안내
+해당 프로그램은 console 프로그램과 web 프로그램이 공존하는 구조입니다.
+현재 로직 상 console 프로그램 실행 시 Client가 Controller로 API 요청을 보내고 있다보니 Console 프로그램을 실행하려 해도 스프링을 띄워야 합니다.
+이로 인해 아래의 'Main 브랜치 프로그램 실행 방법'을 참고하여 docker 컨테이너를 띄운 후 console 프로그램 or web 프로그램을 실행시키시길 바랍니다.
 
 
 ## 🎰 Main 브랜치 프로그램 실행 방법

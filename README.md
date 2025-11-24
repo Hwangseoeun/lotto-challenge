@@ -36,8 +36,8 @@ STEP 03 : https://github.com/Hwangseoeun/lotto-challenge/pull/4
 
 
 ## 🚨 프로그램 실행 전 안내
-해당 프로그램은 console 프로그램과 web 프로그램이 공존하는 구조입니다.
-현재 로직 상 console 프로그램 실행 시 Client가 Controller로 API 요청을 보내고 있다보니 Console 프로그램을 실행하려 해도 스프링을 띄워야 합니다.
+해당 프로그램은 console 프로그램과 web 프로그램이 공존하는 구조입니다.\
+현재 로직 상 console 프로그램 실행 시 Client가 Controller로 API 요청을 보내고 있다보니 Console 프로그램을 실행하려 해도 스프링을 띄워야 합니다.\
 이로 인해 아래의 'Main 브랜치 프로그램 실행 방법'을 참고하여 docker 컨테이너를 띄운 후 console 프로그램 or web 프로그램을 실행시키시길 바랍니다.
 
 
